@@ -5,7 +5,6 @@ import { pageMeta } from "@/content/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { SecurityPillars, TrustBadgeRow } from "@/components/sections/SecurityPillars";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = pageMeta({
   title: about.meta.title,
@@ -86,12 +85,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <CTASection
-        headline="Want to help build it?"
-        subheadline="We're hiring across engineering, product, compliance, and operations."
-        primary={{ label: "View Open Roles", href: "/careers" }}
-        secondary={{ label: "Talk to Us", href: "/contact" }}
-      />
     </>
   );
 }

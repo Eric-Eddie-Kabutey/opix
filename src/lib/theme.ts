@@ -71,6 +71,9 @@ export const buttonVariants = {
     "bg-card text-primary ring-1 ring-primary/25 hover:ring-primary/50 hover:bg-primary/[0.04] focus-visible:outline-primary",
   // For dark backgrounds
   white: "bg-card text-foreground hover:bg-secondary focus-visible:outline-card",
+  // Bordered, for dark backgrounds (footer / dark hero)
+  outlineDark:
+    "bg-transparent text-white ring-1 ring-white/25 hover:ring-white/45 hover:bg-white/5 focus-visible:outline-white",
 } as const;
 
 export const buttonSizes = {

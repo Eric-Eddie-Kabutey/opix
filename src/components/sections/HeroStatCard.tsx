@@ -1,77 +1,54 @@
-// Compact hero card — a simple donut (pie) chart of verification outcomes.
-// Pure SVG, no chart dependency. Accessible: role="img" summary + a visible
-// legend with labels and values (never color alone).
+"use client";
 
-// Colors reference the centralized palette tokens (globals.css §1/§3).
-const segments = [
-  { label: "Verified instantly", value: 72, color: "var(--color-primary)" }, // Enterprise Blue
-  { label: "Cross-bank match", value: 18, color: "var(--color-accent)" }, // Muted Teal
-  { label: "New enrollment", value: 10, color: "var(--brand-champagne)" }, // Champagne
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
+import { Icon } from "@/components/ui/Icon";
+import { NumberTicker } from "@/components/ui/NumberTicker";
+
+// Three hero stat cards (the StatsBar figures) with ticker numbers and heights
+// that grow/shrink as you scroll — alternating directions so the column "breathes".
+type Stat = { prefix: string; value: number; suffix: string; decimals?: number; label: string };
+
+const stats: Stat[] = [
+  { prefix: "<", value: 30, suffix: "s", label: "Average identity verification time" },
+  { prefix: "60–", value: 80, suffix: "%", label: "Reduction in onboarding costs" },
+  { prefix: "", value: 100, suffix: "%", label: "Consent-first data sharing" },
 ];
 
 export function HeroStatCard() {
-  const total = segments.reduce((s, x) => s + x.value, 0);
-  const R = 42;
-  const C = 2 * Math.PI * R;
-  let offset = 0;
-
-  const summary = segments.map((s) => `${s.label} ${Math.round((s.value / total) * 100)}%`).join(", ");
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
   return (
-    <div className="mx-auto max-w-sm rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-lift)]">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-sm font-semibold text-foreground">Verification outcomes</h2>
-          <p className="text-xs text-muted-foreground">Last 30 days</p>
-        </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/12 px-2.5 py-1 text-[11px] font-medium text-accent-hover">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-status" />
-          Live
-        </span>
-      </div>
-
-      <div className="mt-5 flex items-center gap-6">
-        {/* Donut */}
-        <div role="img" aria-label={`Verification outcomes: ${summary}.`} className="relative flex-none">
-          <svg viewBox="0 0 100 100" className="h-32 w-32 -rotate-90">
-            <circle cx="50" cy="50" r={R} fill="none" stroke="var(--color-muted)" strokeWidth="12" />
-            {segments.map((s) => {
-              const len = (s.value / total) * C;
-              const dash = <circle
-                key={s.label}
-                cx="50"
-                cy="50"
-                r={R}
-                fill="none"
-                stroke={s.color}
-                strokeWidth="12"
-                strokeDasharray={`${len} ${C - len}`}
-                strokeDashoffset={-offset}
-                strokeLinecap="butt"
-              />;
-              offset += len;
-              return dash;
-            })}
-          </svg>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-display text-2xl font-semibold text-primary">42k</span>
-            <span className="text-[10px] text-muted-foreground">verified</span>
-          </div>
-        </div>
-
-        {/* Legend */}
-        <ul className="flex-1 space-y-2.5">
-          {segments.map((s) => (
-            <li key={s.label} className="flex items-center gap-2.5">
-              <span className="h-2.5 w-2.5 flex-none rounded-sm" style={{ backgroundColor: s.color }} />
-              <span className="flex-1 text-xs text-foreground">{s.label}</span>
-              <span className="font-mono text-xs font-medium text-muted-foreground">
-                {Math.round((s.value / total) * 100)}%
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div ref={ref} className="flex flex-row gap-4">
+      {stats.map((stat, i) => (
+        <StatCard key={stat.label} stat={stat} index={i} progress={scrollYProgress} />
+      ))}
     </div>
+  );
+}
+
+function StatCard({ stat, index, progress }: { stat: Stat; index: number; progress: MotionValue<number> }) {
+  const reduce = useReducedMotion();
+  // Even cards grow as you scroll, odd cards shrink → heights increase & decrease.
+  const grows = index % 2 === 0;
+  const minHeight = useTransform(progress, [0, 1], grows ? ["8.5rem", "12.5rem"] : ["12.5rem", "8.5rem"]);
+
+  return (
+    <motion.div
+      style={reduce ? undefined : { minHeight }}
+      className="relative flex min-h-36 flex-col justify-center overflow-hidden rounded-3xl border border-white/10 p-6 [background:radial-gradient(120%_120%_at_15%_0%,var(--color-navy-700)_0%,var(--color-navy-900)_45%,var(--color-navy-950)_100%)] shadow-[var(--shadow-lift)]"
+    >
+      <p className="font-display text-4xl font-semibold leading-none text-white sm:text-5xl">
+        {stat.prefix}
+        <NumberTicker value={stat.value} decimalPlaces={stat.decimals} />
+        {stat.suffix}
+      </p>
+      <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-slate-300">{stat.label}</p>
+      <Icon name="star" className="absolute bottom-5 right-5 h-4 w-4 text-teal-300/70" />
+    </motion.div>
   );
 }

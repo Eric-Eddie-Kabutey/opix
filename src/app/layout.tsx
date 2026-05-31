@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { fontVariables } from "@/lib/fonts";
-import { Navbar } from "@/components/navigation/Navbar";
-import { PageBanner } from "@/components/layout/PageBanner";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Footer } from "@/components/navigation/Footer";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema } from "@/content/seo";
 import { site } from "@/content/site";
@@ -37,12 +37,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        <PageBanner />
-        <Navbar />
+        <SiteHeader />
         <main id="main" className="flex-1">
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

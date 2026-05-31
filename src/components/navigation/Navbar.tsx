@@ -58,11 +58,18 @@ export function Navbar() {
 
   return (
     <header
+      // Positioning + scroll show/hide animation is handled by the SiteHeader
+      // wrapper; this stays `relative` so the mega panel anchors correctly.
       className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
-        scrolled || openMenu
-          ? "border-b border-border bg-card/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-background"
+        "relative z-40 border-b transition-colors duration-200",
+        // Mega panel open → solid card bg so the dropdown reads.
+        // Scrolled (the `scrolled` state) → reveal the bottom border.
+        // At the very top → seamless, borderless.
+        openMenu
+          ? "border-border bg-card"
+          : scrolled
+            ? "border-border bg-background"
+            : "border-transparent bg-background"
       )}
       onMouseLeave={scheduleClose}
     >

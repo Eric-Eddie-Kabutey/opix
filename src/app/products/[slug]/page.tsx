@@ -7,7 +7,6 @@ import { Section, SectionHeader } from "@/components/ui/Section";
 import { CheckList } from "@/components/ui/CheckList";
 import { Icon } from "@/components/ui/Icon";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
-import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
@@ -143,12 +142,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </Section>
       )}
 
-      <CTASection
-        headline={`Ready to ship ${product.name}?`}
-        subheadline="Free sandbox. No credit card. No approval required."
-        primary={product.hero.cta}
-        secondary={{ label: "Read the Docs", href: "/developers" }}
-      />
     </>
   );
 }

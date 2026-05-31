@@ -6,7 +6,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { CheckList } from "@/components/ui/CheckList";
 import { Button } from "@/components/ui/Button";
-import { CTASection } from "@/components/sections/CTASection";
 
 export function generateStaticParams() {
   return useCases.map((u) => ({ slug: u.slug }));
@@ -90,12 +89,6 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         </Section>
       )}
 
-      <CTASection
-        headline="Ready to get started?"
-        subheadline="Tell us about your use case and we'll tailor a walkthrough."
-        primary={{ label: "Schedule a Demo", href: "/demo" }}
-        secondary={{ label: "Start for Free", href: "/signup" }}
-      />
     </>
   );
 }

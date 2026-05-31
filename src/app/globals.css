@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /* ============================================================================
    OPIX DESIGN SYSTEM — SINGLE SOURCE OF TRUTH
@@ -21,9 +22,9 @@
 @theme {
   /* ---- §1 BRAND PALETTE (raw colors — edit these to rebrand) -------------- */
   --brand-enterprise: #12355b; /* Enterprise Blue — brand / structural        */
-  --brand-stone: #e7e3da;      /* Stone — warm neutral surface                */
+  --brand-stone: #f1f2f3;      /* Offwhite — neutral surface (was warm stone)  */
   --brand-ink: #0b1724;        /* Deep Ink — darkest (hero / footer / nav)    */
-  --brand-warm-white: #faf9f6; /* Warm White — page background                */
+  --brand-warm-white: #fbfbfc; /* Offwhite — page background (neutral, cool)   */
   --brand-slate-text: #243447; /* Slate Text — body / headings                */
   --brand-gray-blue: #66788a;  /* Muted Gray Blue — muted text                */
   --brand-blue-tint: #e9f0f7;  /* Soft Blue Tint — subtle fills               */
@@ -44,9 +45,9 @@
   --color-teal-400: #3e9286;
   --color-teal-500: #2f7d73;
   --color-teal-600: #256a61; /* darker → accessible accent text on light */
-  /* slate = warm neutral + gray-blue text family */
-  --color-slate-50: #faf9f6;
-  --color-slate-100: #f2f0ea;
+  /* slate = neutral offwhite + gray-blue text family */
+  --color-slate-50: #fbfbfc;
+  --color-slate-100: #f2f3f4;
   --color-slate-200: #d8d4cb;
   --color-slate-300: #c3beb3;
   --color-slate-400: #9aa4af;
@@ -107,6 +108,9 @@
   --shadow-soft: 0 1px 2px rgba(11, 23, 36, 0.04), 0 8px 24px -12px rgba(11, 23, 36, 0.12);
   --shadow-lift: 0 2px 4px rgba(11, 23, 36, 0.06), 0 24px 48px -24px rgba(11, 23, 36, 0.22);
   --shadow-accent: 0 8px 24px -12px rgba(47, 125, 115, 0.5);
+
+  /* magicui AnimatedShinyText — generates the `animate-shiny-text` utility */
+  --animate-shiny-text: shiny-text 4s infinite;
 }
 
 @layer base {
@@ -117,6 +121,9 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* SiteHeader collapses a top spacer on scroll; scroll anchoring would fight
+       that height change and cause a show/hide flicker near the threshold. */
+    overflow-anchor: none;
   }
 
   body {
@@ -235,6 +242,14 @@
     background-size: 26px 26px;
   }
 
+  /* Newsletter CTA card — deep ink base with a warm champagne corner glow */
+  .bg-cta-glow {
+    background:
+      radial-gradient(70% 95% at 100% 0%, rgba(191, 164, 111, 0.34) 0%, transparent 55%),
+      radial-gradient(45% 65% at 88% 4%, rgba(245, 206, 140, 0.22) 0%, transparent 50%),
+      linear-gradient(140deg, var(--brand-ink) 0%, #0f2236 58%, var(--brand-ink) 100%);
+  }
+
   /* ---- ANIMATIONS ------------------------------------------------------ */
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(14px); }
@@ -251,5 +266,16 @@
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-up, .animate-status { animation: none; }
     html { scroll-behavior: auto; }
+  }
+}
+
+
+/* magicui AnimatedShinyText keyframe (utility generated from --animate-shiny-text in @theme §5) */
+@keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;
+  }
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;
   }
 }

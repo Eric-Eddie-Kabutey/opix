@@ -4,7 +4,6 @@ import { pageMeta } from "@/content/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { ProductCard } from "@/components/sections/Cards";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = pageMeta({
   title: "Products | Verify, Trust, and Transact",
@@ -42,12 +41,6 @@ export default function ProductsPage() {
           ))}
         </div>
       </Section>
-      <CTASection
-        headline="Ready to build trust at scale?"
-        subheadline="Join the institutions and freelancers already using OPIX across Africa."
-        primary={{ label: "Start for Free", href: "/signup" }}
-        secondary={{ label: "Schedule a Demo", href: "/demo" }}
-      />
     </>
   );
 }

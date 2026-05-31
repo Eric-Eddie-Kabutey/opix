@@ -4,7 +4,6 @@ import { pageMeta } from "@/content/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { UseCaseCard } from "@/components/sections/Cards";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = pageMeta({
   title: "Use Cases | Who OPIX Serves",
@@ -29,11 +28,6 @@ export default function UseCasesPage() {
           ))}
         </div>
       </Section>
-      <CTASection
-        headline="Find your fit on the platform."
-        primary={{ label: "Talk to Sales", href: "/contact" }}
-        secondary={{ label: "Explore Products", href: "/products" }}
-      />
     </>
   );
 }

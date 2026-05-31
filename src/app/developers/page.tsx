@@ -5,7 +5,6 @@ import {
   quickStart,
   sdks,
   community,
-  devFinalCta,
 } from "@/content/developers";
 import { apiReference, codeExamples } from "@/content/apiReference";
 import { pageMeta, softwareAppSchema } from "@/content/seo";
@@ -19,7 +18,6 @@ import { CodeTabs } from "@/components/dev/CodeTabs";
 import { SDKCard } from "@/components/dev/SDKCard";
 import { EndpointGroup } from "@/components/dev/Endpoints";
 import { DataFlow } from "@/components/dev/ArchitectureDiagram";
-import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = pageMeta({
@@ -186,12 +184,6 @@ export default function DevelopersPage() {
         </div>
       </Section>
 
-      <CTASection
-        headline={devFinalCta.headline}
-        subheadline={devFinalCta.subheadline}
-        primary={devFinalCta.primary}
-        secondary={devFinalCta.secondary}
-      />
     </>
   );
 }

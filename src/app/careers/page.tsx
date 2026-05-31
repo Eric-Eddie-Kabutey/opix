@@ -19,7 +19,6 @@ import { CheckList } from "@/components/ui/CheckList";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { ApplicationProcessTimeline } from "@/components/careers/Timeline";
 import { RoleExplorer } from "@/components/careers/RoleExplorer";
-import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
@@ -118,12 +117,6 @@ export default function CareersPage() {
         <FAQAccordion faqs={careersFaq} />
       </Section>
 
-      <CTASection
-        headline="Ready to build Africa's digital future?"
-        subheadline="We're waiting for you."
-        primary={{ label: "View Open Roles", href: "#open-roles" }}
-        secondary={{ label: "Send a General Application", href: "/careers/apply/general-application" }}
-      />
     </>
   );
 }

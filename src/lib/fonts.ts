@@ -4,6 +4,7 @@
 // are consumed in src/app/globals.css (§4) and exposed as Tailwind font-* tokens.
 // ============================================================================
 import { Manrope, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 // Main UI + display font.
 export const fontSans = Manrope({
@@ -19,5 +20,12 @@ export const fontMono = JetBrains_Mono({
   display: "swap",
 });
 
+// Local display face (Bondari) — used ONLY for the oversized footer wordmark.
+export const fontWordmark = localFont({
+  src: "../public/font/bondari/Bondari.otf",
+  variable: "--font-wordmark",
+  display: "swap",
+});
+
 // Convenience: spread onto <html> className.
-export const fontVariables = `${fontSans.variable} ${fontMono.variable}`;
+export const fontVariables = `${fontSans.variable} ${fontMono.variable} ${fontWordmark.variable}`;

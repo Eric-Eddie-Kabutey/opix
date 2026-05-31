@@ -5,7 +5,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/ui/Icon";
 import { CheckList } from "@/components/ui/CheckList";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = pageMeta({
   title: coverage.meta.title,
@@ -58,12 +57,6 @@ export default function CoveragePage() {
         </div>
       </Section>
 
-      <CTASection
-        headline="Want OPIX in your market?"
-        subheadline="Banks, fintechs, and regulators — let's talk about bringing OPIX to your country."
-        primary={{ label: "Contact Us", href: "/contact" }}
-        secondary={{ label: "Explore Products", href: "/products" }}
-      />
     </>
   );
 }

@@ -5,7 +5,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/ui/Icon";
 import { StatsBar } from "@/components/sections/StatsBar";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = pageMeta({
   title: sandbox.meta.title,
@@ -55,12 +54,6 @@ export default function SandboxPage() {
         </div>
       </Section>
 
-      <CTASection
-        headline="Test everything. Break nothing."
-        subheadline="Get sandbox access instantly — no approval, no credit card."
-        primary={sandbox.primary}
-        secondary={{ label: "Read the Docs", href: "/docs" }}
-      />
     </>
   );
 }
