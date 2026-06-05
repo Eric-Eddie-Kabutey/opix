@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMeta({
   title: "Java SDK Guide | OPIX Docs",
   description:
     "Integrate OPIX with Java and Spring Boot. Add the dependency, configure the client, and verify identity in three steps. Reactive WebFlux and HSM support.",
-  path: "/docs/java",
+  path: "/developers/docs/java",
 });
 
 export default function JavaDocsPage() {
@@ -20,7 +20,7 @@ export default function JavaDocsPage() {
     <DocsLayout
       title="Java SDK"
       description="Integrate OPIX into your Spring Boot or standalone Java application in minutes."
-      crumbs={[{ name: "Home", href: "/" }, { name: "Docs", href: "/docs" }, { name: "Java SDK", href: "/docs/java" }]}
+      crumbs={[{ name: "Home", href: "/" }, { name: "Developers", href: "/developers" }, { name: "Docs", href: "/developers/docs" }, { name: "Java SDK", href: "/developers/docs/java" }]}
     >
       <section>
         <h2 className="font-display text-2xl text-navy-900">Why Java</h2>

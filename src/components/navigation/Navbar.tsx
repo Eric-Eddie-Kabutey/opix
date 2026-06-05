@@ -61,15 +61,15 @@ export function Navbar() {
       // Positioning + scroll show/hide animation is handled by the SiteHeader
       // wrapper; this stays `relative` so the mega panel anchors correctly.
       className={cn(
-        "relative z-40 border-b transition-colors duration-200",
+        "relative z-40 transition-colors duration-200 bg-background",
         // Mega panel open → solid card bg so the dropdown reads.
         // Scrolled (the `scrolled` state) → reveal the bottom border.
         // At the very top → seamless, borderless.
-        openMenu
-          ? "border-border bg-card"
-          : scrolled
-            ? "border-border bg-background"
-            : "border-transparent bg-background"
+        // openMenu
+        //   ? "bg-card"
+        //   : scrolled
+        //     ? "bg-background"
+        //     : "bg-background"
       )}
       onMouseLeave={scheduleClose}
     >
@@ -87,8 +87,8 @@ export function Navbar() {
                   <button
                     className={cn(
                       pill,
-                      "flex items-center gap-1",
-                      isOpen || active ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+                      "flex items-center gap-1 hover:bg-secondary text-muted-foreground hover:text-foreground",
+                      // isOpen || active ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                     aria-expanded={isOpen}
                     aria-haspopup="true"
@@ -103,7 +103,7 @@ export function Navbar() {
                 <li key={item.label} onMouseEnter={scheduleClose}>
                   <Link
                     href={item.href!}
-                    className={cn(pill, active ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground")}
+                    className={cn(pill, "hover:bg-secondary text-muted-foreground hover:text-foreground")}
                   >
                     {item.label}
                   </Link>
@@ -150,7 +150,7 @@ function MegaPanel({ label, onEnter }: { label: string; onEnter: () => void }) {
   let linkIndex = 0;
 
   return (
-    <div className="absolute inset-x-0 top-full hidden lg:block overflow-hidden rounded-b-2xl border border-t-0 border-border bg-card shadow-[var(--shadow-lift)]" onMouseEnter={onEnter}>
+    <div className="absolute inset-x-0 top-full hidden lg:block overflow-hidden border border-t-0 border-border bg-card shadow-[var(--shadow-lift)]" onMouseEnter={onEnter}>
       <Container>
         <div
           id={`mega-${label}`}

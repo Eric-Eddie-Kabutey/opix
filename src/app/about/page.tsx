@@ -16,10 +16,8 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About OPIX"
         title={about.hero.headline}
         subtitle={about.hero.subheadline}
-        crumbs={[{ name: "Home", href: "/" }, { name: "About", href: "/about" }]}
       />
 
       <Section tone="white">

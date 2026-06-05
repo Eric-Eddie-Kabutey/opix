@@ -28,7 +28,7 @@ export function RoleExplorer() {
   return (
     <div>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1" role="group" aria-label="Filter roles by team">
+        <div className="-mx-1 flex flex-wrap gap-2 overflow-x-auto px-1 pb-1" role="group" aria-label="Filter roles by team">
           {roleCategories.map((cat) => {
             const active = category === cat;
             return (
@@ -39,7 +39,7 @@ export function RoleExplorer() {
                 className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active
                     ? "bg-teal-500 text-navy-900"
-                    : "bg-white text-slate-600 ring-1 ring-slate-200 hover:text-navy-900"
+                    : "bg-white text-slate-600 border hover:text-navy-900"
                 }`}
               >
                 {cat}

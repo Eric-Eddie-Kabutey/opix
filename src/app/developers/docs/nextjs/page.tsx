@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMeta({
   title: "Next.js SDK Guide | OPIX Docs",
   description:
     "Build customer-facing identity flows with the OPIX Next.js SDK. Install the package, configure the provider, and drop in biometric capture and consent components.",
-  path: "/docs/nextjs",
+  path: "/developers/docs/nextjs",
 });
 
 export default function NextDocsPage() {
@@ -20,7 +20,7 @@ export default function NextDocsPage() {
     <DocsLayout
       title="Next.js SDK"
       description="Drop-in React components and hooks for identity verification, consent flows, and escrow dashboards. App Router ready."
-      crumbs={[{ name: "Home", href: "/" }, { name: "Docs", href: "/docs" }, { name: "Next.js SDK", href: "/docs/nextjs" }]}
+      crumbs={[{ name: "Home", href: "/" }, { name: "Developers", href: "/developers" }, { name: "Docs", href: "/developers/docs" }, { name: "Next.js SDK", href: "/developers/docs/nextjs" }]}
     >
       <section>
         <h2 className="font-display text-2xl text-navy-900">Why Next.js</h2>

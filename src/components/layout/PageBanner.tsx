@@ -13,7 +13,7 @@ export function PageBanner() {
   const banner = resolveBanner(pathname);
 
   return (
-    <div className="border-b border-border bg-muted/60">
+    <div className="border-b border-border bg-muted">
       <Container>
         <Link
           href={banner.cta.href}

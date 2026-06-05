@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { changelog } from "@/content/developers";
 import { pageMeta } from "@/content/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { Section } from "@/components/ui/Section";
+import { DocsLayout } from "@/components/dev/DocsLayout";
 import { ChangelogAccordion } from "@/components/dev/ChangelogAccordion";
 
 export const metadata: Metadata = pageMeta({
@@ -13,21 +12,15 @@ export const metadata: Metadata = pageMeta({
 
 export default function ChangelogPage() {
   return (
-    <>
-      <PageHero
-        eyebrow={changelog.label}
-        title={changelog.headline}
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Developers", href: "/developers" },
-          { name: "Changelog", href: "/developers/changelog" },
-        ]}
-      />
-      <Section tone="light">
-        <div className="mx-auto max-w-3xl">
-          <ChangelogAccordion releases={changelog.releases} />
-        </div>
-      </Section>
-    </>
+    <DocsLayout
+      title={changelog.headline}
+      crumbs={[
+        { name: "Home", href: "/" },
+        { name: "Developers", href: "/developers" },
+        { name: "Changelog", href: "/developers/changelog" },
+      ]}
+    >
+      <ChangelogAccordion releases={changelog.releases} />
+    </DocsLayout>
   );
 }

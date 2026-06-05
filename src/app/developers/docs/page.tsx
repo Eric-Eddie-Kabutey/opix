@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMeta({
   title: "Documentation | Get Started with OPIX",
   description:
     "OPIX developer documentation. Get your first API call working in under 10 minutes with Java or Next.js. Authentication, quick start, and SDK guides.",
-  path: "/docs",
+  path: "/developers/docs",
 });
 
 export default function DocsPage() {
@@ -20,7 +20,7 @@ export default function DocsPage() {
     <DocsLayout
       title="Documentation"
       description="Everything you need to integrate identity verification, background checks, and escrow into your product."
-      crumbs={[{ name: "Home", href: "/" }, { name: "Docs", href: "/docs" }]}
+      crumbs={[{ name: "Home", href: "/" }, { name: "Developers", href: "/developers" }, { name: "Docs", href: "/developers/docs" }]}
     >
       <section>
         <h2 className="font-display text-2xl text-navy-900">Build with OPIX. Ship in days.</h2>
@@ -29,14 +29,14 @@ export default function DocsPage() {
           backend integration, Next.js for frontend building, or both.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <Link href="/docs/java" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white p-5 hover:border-teal-500/40">
+          <Link href="/developers/docs/java" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white p-5 hover:border-teal-500/40">
             <div>
               <p className="text-sm font-semibold text-navy-900">Java SDK Guide</p>
               <p className="text-xs text-slate-500">Spring Boot, reactive, HSM</p>
             </div>
             <Icon name="arrow-right" className="h-5 w-5 text-teal-600 transition-transform group-hover:translate-x-0.5" />
           </Link>
-          <Link href="/docs/nextjs" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white p-5 hover:border-teal-500/40">
+          <Link href="/developers/docs/nextjs" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white p-5 hover:border-teal-500/40">
             <div>
               <p className="text-sm font-semibold text-navy-900">Next.js SDK Guide</p>
               <p className="text-xs text-slate-500">App Router, RSC, components</p>
@@ -87,7 +87,7 @@ export default function DocsPage() {
             </li>
           ))}
         </ul>
-        <Button href="/sandbox" variant="secondary" className="mt-6" withArrow>Try the Sandbox</Button>
+        <Button href="/developers/sandbox" variant="secondary" className="mt-6" withArrow>Try the Sandbox</Button>
       </section>
     </DocsLayout>
   );

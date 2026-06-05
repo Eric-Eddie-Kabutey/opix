@@ -1,31 +1,38 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
-import { PageBanner } from "./PageBanner";
+import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/navigation/Navbar";
+import { PageBanner } from "./PageBanner";
 
-// Header group (banner + navbar) that reveals at the very top and glides up + out
-// the instant you scroll (same point the navbar bottom-border appears).
-//
-// The header is `fixed` (so it reserves NO space when hidden) and is paired with a
-// spacer whose height collapses from the real header height → 0 in lockstep with the
-// slide — so the content rises to fill the gap instead of leaving an empty band.
-const SHOW_BELOW = 6; // basically at the top → reveal
-const HIDE_ABOVE = 12; // as soon as the border kicks in → hide upward
-const ESTIMATED_HEADER_H = 105; // SSR/first-paint estimate; refined by ResizeObserver
-
-// useLayoutEffect on the client (set spacer before paint), useEffect on the server.
+// useLayoutEffect on the client (measure before paint), useEffect on the server.
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
+// Fixed header (banner + navbar). Top-anchored: shown at the top of the page,
+// slides up out of view once you scroll past it, slides back when you return near
+// the top.
+//
+// Why it now flows instead of flickering:
+//  • Show/hide is a transform only (GPU, no reflow) — the old version animated a
+//    collapsing spacer's HEIGHT every toggle, which jerked the whole page.
+//  • The spacer is now CONSTANT (always the header's height). It lives at the very
+//    top of the document, so once you've scrolled past the header it's off-screen —
+//    a hidden header therefore leaves no visible gap, and nothing reflows.
+//  • Position-based threshold with hysteresis (hide past the header, reveal under
+//    half of it), rAF-coalesced like ScrollToTop, so state flips once per crossing.
 export function SiteHeader() {
+  const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
-  const [headerH, setHeaderH] = useState(ESTIMATED_HEADER_H);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerH, setHeaderH] = useState(105); // SSR estimate; refined on mount
 
-  // Keep the spacer height matched to the real header height (banner can wrap).
+  // On the developer hub the sidebar is `sticky top-28`, so it relies on the header
+  // staying put — keep the header pinned (never slides away) on those routes.
+  const pinned = pathname?.startsWith("/developers") ?? false;
+
+  // Keep the spacer matched to the real header height (the banner can wrap).
   useIsoLayoutEffect(() => {
-    const el = headerRef.current;
+    const el = ref.current;
     if (!el) return;
     const measure = () => setHeaderH(el.offsetHeight);
     measure();
@@ -35,36 +42,52 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
+    if (pinned) {
+      setHidden(false); // always visible on developer routes
+      return;
+    }
+    let raf = 0;
     const onScroll = () => {
-      const y = window.scrollY;
-      if (y <= SHOW_BELOW) setHidden(false);
-      else if (y >= HIDE_ABOVE) setHidden(true);
+      if (raf) return; // coalesce scroll bursts into one rAF tick
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        // Hide after a short scroll; reveal once you're back near the very top.
+        // Hysteresis (gap between the two) keeps it from chattering at the edge.
+        const HIDE_AT = 48;
+        const SHOW_AT = 16;
+        setHidden((prev) => {
+          if (!prev && y > HIDE_AT) return true; // scrolled a little → hide
+          if (prev && y < SHOW_AT) return false; // back near the top → reveal
+          return prev; // dead-band → no change (React bails, no re-render)
+        });
+      });
     };
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    onScroll(); // sync to a restored scroll position on mount
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [pinned]);
 
   return (
-    <div className="relative">
-      {/* Fixed, animated header — out of flow, so it reserves no space when hidden */}
+    <>
       <div
-        ref={headerRef}
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-200 ease-out motion-reduce:transition-none",
-          hidden ? "pointer-events-none -translate-y-full opacity-0" : "translate-y-0 opacity-100"
-        )}
+        id="site-header"
+        ref={ref}
+        className={`fixed inset-x-0 top-0 z-50 transform-gpu transition-transform duration-300 ease-out ${
+          hidden ? "-translate-y-full" : "translate-y-0"
+        }`}
       >
         <PageBanner />
         <Navbar />
       </div>
 
-      {/* Spacer collapses as the header leaves, so content rises to fill the space */}
-      <div
-        aria-hidden
-        style={{ height: hidden ? 0 : headerH }}
-        className="transition-[height] duration-200 ease-out motion-reduce:transition-none"
-      />
-    </div>
+      {/* Constant spacer — reserves the header's height at the document top so content
+          starts below it. It scrolls off-screen once you pass the header, so a hidden
+          header never leaves a visible gap, and its fixed height never reflows. */}
+      <div aria-hidden style={{ height: headerH }} />
+    </>
   );
 }

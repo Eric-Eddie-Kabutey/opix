@@ -1,60 +1,118 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useRef, useState, type ComponentProps } from "react";
+import { motion, useScroll, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Section";
-import { Breadcrumbs, type Crumb } from "@/components/ui/Breadcrumbs";
+import { Container } from "@/components/layout/Container";
+import { HeroGradientBars } from "./HeroGradientBars";
+import { ScrollIndicator } from "./ScrollIndicator";
+import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
 type CTA = { label: string; href: string };
+type HeroButton = {
+  label: string;
+  href: string;
+  variant?: ComponentProps<typeof Button>["variant"];
+};
 
-// Shared dark hero for inner pages — deep navy gradient + network grid (design system §3).
+// Inner-page hero — mirrors HomeHero: light `bg-hero-light`, centered content,
+// decorative parallax gradient bars, a DiaTextReveal title (teal→navy→gold sweep,
+// resting in primary navy), and the subtitle + buttons gated behind the title's
+// onComplete so they fade up once the sweep finishes. Title + subtitle + buttons
+// only. (Legacy `primary`/`secondary` CTAs still fold into the button row.)
 export function PageHero({
-  eyebrow,
   title,
   subtitle,
+  buttons,
   primary,
   secondary,
-  crumbs,
-  children,
 }: {
-  eyebrow?: string;
   title: string;
   subtitle?: string;
+  buttons?: HeroButton[];
   primary?: CTA;
   secondary?: CTA;
-  crumbs?: Crumb[];
-  children?: ReactNode;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const [titleDone, setTitleDone] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Gated fade-up (fade-only under reduced motion). `delay` staggers the buttons a
+  // beat behind the subtitle once the title has finished revealing.
+  const reveal = (delay: number) =>
+    reduce
+      ? {
+          initial: { opacity: 0 },
+          animate: titleDone ? { opacity: 1 } : { opacity: 0 },
+          transition: { duration: 0.25, delay },
+        }
+      : {
+          initial: { opacity: 0, y: 18 },
+          animate: titleDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+          transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const, delay },
+        };
+
+  // Legacy primary/secondary CTAs fold into the buttons row with light-theme variants.
+  const allButtons: HeroButton[] =
+    buttons && buttons.length > 0
+      ? buttons
+      : ([
+          primary && { ...primary, variant: "secondary" as const },
+          secondary && { ...secondary, variant: "outline" as const },
+        ].filter(Boolean) as HeroButton[]);
+
   return (
-    <section className="relative overflow-hidden bg-aurora">
-      <div className="absolute inset-0 bg-grid opacity-40" aria-hidden />
-      <div className="container-page relative py-16 md:py-24">
-        {crumbs && (
-          <div className="mb-8">
-            <Breadcrumbs items={crumbs} onDark />
-          </div>
+    <section
+      ref={ref}
+      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-grid-light opacity-50" aria-hidden />
+      <HeroGradientBars progress={scrollYProgress} />
+
+      <Container className="relative flex flex-col items-center py-16 text-center">
+        <h1 className="z-30 max-w-4xl type-hero text-primary animate-fade-up [animation-delay:60ms]">
+          <DiaTextReveal
+            text={title}
+            // Resting color — must be a real token (Tailwind v4 names them --color-*).
+            textColor="var(--color-primary)"
+            // Brand sweep palette: teal → navy → gold.
+            colors={["var(--color-accent)", "var(--color-primary)", "var(--color-gold-500)"]}
+            onComplete={() => setTitleDone(true)}
+          />
+        </h1>
+
+        {subtitle && (
+          <motion.p
+            {...reveal(0)}
+            className="mt-6 max-w-[760px] text-lg leading-relaxed text-foreground/80"
+          >
+            {subtitle}
+          </motion.p>
         )}
-        <div className="max-w-3xl">
-          {eyebrow && <Eyebrow onDark>{eyebrow}</Eyebrow>}
-          <h1 className="mt-4 font-display text-4xl leading-[1.08] text-white md:text-5xl lg:text-6xl">
-            {title}
-          </h1>
-          {subtitle && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">{subtitle}</p>}
-          {(primary || secondary) && (
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              {primary && (
-                <Button href={primary.href} size="lg" withArrow>
-                  {primary.label}
-                </Button>
-              )}
-              {secondary && (
-                <Button href={secondary.href} variant="white" size="lg">
-                  {secondary.label}
-                </Button>
-              )}
-            </div>
-          )}
-          {children && <div className="mt-10">{children}</div>}
-        </div>
-      </div>
+
+        {allButtons.length > 0 && (
+          <motion.div {...reveal(0.12)} className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+            {allButtons.map((b, i) => (
+              <Button
+                key={`${b.href}-${b.label}`}
+                href={b.href}
+                variant={b.variant ?? (i === 0 ? "secondary" : "outline")}
+                size="lg"
+                withArrow={i === 0}
+              >
+                {b.label}
+              </Button>
+            ))}
+          </motion.div>
+        )}
+      </Container>
+
+      <ScrollIndicator />
     </section>
   );
 }

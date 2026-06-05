@@ -11,6 +11,7 @@ export const homeHero = {
     { value: "60–80%", label: "Reduction in onboarding costs" },
     { value: "100%", label: "Consent-first data sharing" },
   ],
+  trustLine: "Backed by leading African fintech investors and operating under Central Bank of The Gambia oversight.",
 };
 
 export const problem = {
@@ -129,6 +130,7 @@ export const testimonials = {
       name: "Amadou Jallow",
       title: "Head of Digital Banking",
       company: "Major Gambian Commercial Bank",
+      rating: 5,
     },
     {
       quote:
@@ -136,6 +138,7 @@ export const testimonials = {
       name: "Fatou Sarr",
       title: "Full-Stack Developer",
       company: "Independent Contractor, Banjul",
+      rating:5,
     },
     {
       quote:
@@ -143,6 +146,7 @@ export const testimonials = {
       name: "Omar Ceesay",
       title: "HR Director",
       company: "Regional Microfinance Institution",
+      rating: 4,
     },
   ],
 };
@@ -153,7 +157,7 @@ export const developerTeaser = {
   intro:
     "Clean REST APIs. Comprehensive SDKs. Interactive documentation. Sandbox environments. OPIX is built by developers, for developers.",
   primary: { label: "Read the Docs", href: "/developers" },
-  secondary: { label: "View API Reference", href: "/api-reference" },
+  secondary: { label: "View API Reference", href: "/developers/api-reference" },
 };
 
 export const finalCta = {

@@ -17,12 +17,10 @@ export default function DemoPage() {
   return (
     <>
       <PageHero
-        eyebrow="Demo"
         title={demo.headline}
         subtitle={demo.subheadline}
         primary={{ label: "Book a Walkthrough", href: "/contact" }}
         secondary={{ label: "Start for Free", href: "/signup" }}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Demo", href: "/demo" }]}
       />
 
       <Section tone="white">

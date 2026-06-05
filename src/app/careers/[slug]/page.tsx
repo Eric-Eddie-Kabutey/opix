@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { CheckList } from "@/components/ui/CheckList";
 import { JobPostingSchema } from "@/components/careers/JobPostingSchema";
+import { Container } from "@/components/layout/Container";
 
 export function generateStaticParams() {
   return roles.map((r) => ({ slug: r.slug }));
@@ -34,7 +35,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
     <>
       <JobPostingSchema role={role} />
 
-      <section className="relative overflow-hidden bg-aurora">
+      {/* <section className="relative overflow-hidden bg-aurora">
         <div className="absolute inset-0 bg-grid opacity-30" aria-hidden />
         <div className="container-page relative py-14 md:py-20">
           <Breadcrumbs
@@ -70,7 +71,58 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <div className="bg-hero-light p-6">
+        <Container className="py-10 md:py-14">
+          <div className="max-w-3xl">
+            <span className="mt-6 inline-flex items-center rounded-full bg-teal-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-teal-700">
+              {role.department}
+            </span>
+
+            <h1 className="mt-4 font-display text-3xl leading-[1.12] text-navy-900 md:text-4xl lg:text-[2.75rem]">
+              {role.title}
+            </h1>
+            <p className="mt-5 text-lg leading-relaxed text-slate-600">{role.summary}</p>
+
+            {/* Key facts */}
+            <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
+              {([
+                ["pin", "Location", role.location],
+                ["clock", "Type", role.type],
+                ["coins", "Compensation", role.salary],
+                ["users", "Team", role.teamSize],
+              ] as const).map(([icon, label, val]) => (
+                <div key={label} className="flex items-center gap-1.5">
+                  <Icon name={icon} className="h-4 w-4 flex-none text-teal-600" />
+                  <dt className="sr-only">{label}</dt>
+                  <dd>{val}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* Tags */}
+            {role.tags.length > 0 && (
+              <ul className="mt-5 flex flex-wrap gap-1.5">
+                {role.tags.map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-600"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div className="mt-8">
+              <Button href={role.applyHref} size="lg" withArrow>
+                Apply for this Role
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </div>
 
       <Section tone="white">
         <div className="grid gap-12 lg:grid-cols-[1.6fr_0.8fr] lg:items-start">
@@ -107,16 +159,16 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
               <dl className="space-y-4 text-sm">
                 <div>
+                  <dt className="text-xs uppercase tracking-wide text-slate-400">Department</dt>
+                  <dd className="mt-0.5 font-medium text-navy-900">{role.department}</dd>
+                </div>
+                <div>
                   <dt className="text-xs uppercase tracking-wide text-slate-400">Reports to</dt>
                   <dd className="mt-0.5 font-medium text-navy-900">{role.reportingTo}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs uppercase tracking-wide text-slate-400">Team</dt>
-                  <dd className="mt-0.5 font-medium text-navy-900">{role.teamSize}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-wide text-slate-400">Type</dt>
-                  <dd className="mt-0.5 font-medium text-navy-900">{role.type}</dd>
+                  <dt className="text-xs uppercase tracking-wide text-slate-400">Location</dt>
+                  <dd className="mt-0.5 font-medium text-navy-900">{role.location}</dd>
                 </div>
               </dl>
               <Button href={role.applyHref} className="mt-6 w-full" withArrow>Apply for this Role</Button>

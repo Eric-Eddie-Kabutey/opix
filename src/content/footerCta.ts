@@ -33,26 +33,26 @@ export const footerCtaByPath: Record<string, FooterCtaContent> = {
   "/developers": {
     heading: "Build with OPIX.",
     text: "Explore APIs, SDKs, sandbox tools, and integration guides built for modern fintech teams.",
-    primary: { label: "Read the Docs", href: "/docs" },
-    secondary: { label: "Try the Sandbox", href: "/sandbox" },
+    primary: { label: "Read the Docs", href: "/developers/docs" },
+    secondary: { label: "Try the Sandbox", href: "/developers/sandbox" },
   },
-  "/docs": {
+  "/developers/docs": {
     heading: "Build with OPIX.",
     text: "Explore APIs, SDKs, sandbox tools, and integration guides built for modern fintech teams.",
-    primary: { label: "Read the Docs", href: "/docs" },
-    secondary: { label: "Try the Sandbox", href: "/sandbox" },
+    primary: { label: "Read the Docs", href: "/developers/docs" },
+    secondary: { label: "Try the Sandbox", href: "/developers/sandbox" },
   },
-  "/api-reference": {
+  "/developers/api-reference": {
     heading: "Start integrating trusted identity.",
     text: "Browse OPIX endpoints for identity, consent, escrow, verification, and financial trust.",
-    primary: { label: "View API Reference", href: "/api-reference" },
-    secondary: { label: "Open Sandbox", href: "/sandbox" },
+    primary: { label: "View API Reference", href: "/developers/api-reference" },
+    secondary: { label: "Open Sandbox", href: "/developers/sandbox" },
   },
-  "/sandbox": {
+  "/developers/sandbox": {
     heading: "Test everything. Break nothing.",
     text: "Mock biometrics, simulated consent, and pre-built scenarios — zero risk, instant access.",
     primary: { label: "Launch Sandbox", href: "/signup" },
-    secondary: { label: "Read the Docs", href: "/docs" },
+    secondary: { label: "Read the Docs", href: "/developers/docs" },
   },
   "/careers": {
     heading: "Help build Africa's trust infrastructure.",

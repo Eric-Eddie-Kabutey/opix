@@ -27,27 +27,27 @@ export const bannersByPath: Record<string, Banner> = {
   "/developers": {
     badge: "DEVELOPERS",
     text: "Build with OPIX APIs, SDKs, sandbox tools, and integration guides.",
-    cta: { label: "Read the docs", href: "/docs" },
+    cta: { label: "Read the docs", href: "/developers/docs" },
   },
-  "/docs": {
+  "/developers/docs": {
     badge: "DEVELOPERS",
     text: "Build with OPIX APIs, SDKs, sandbox tools, and integration guides.",
-    cta: { label: "Read the docs", href: "/docs" },
+    cta: { label: "Read the docs", href: "/developers/docs" },
   },
-  "/api-reference": {
+  "/developers/api-reference": {
     badge: "API",
     text: "Explore identity, consent, escrow, and financial trust endpoints.",
-    cta: { label: "Browse endpoints", href: "/api-reference" },
+    cta: { label: "Browse endpoints", href: "/developers/api-reference" },
   },
-  "/sandbox": {
+  "/developers/sandbox": {
     badge: "SANDBOX",
     text: "Test every endpoint with mock data and simulated biometrics — zero risk.",
-    cta: { label: "Launch the sandbox", href: "/sandbox" },
+    cta: { label: "Launch the sandbox", href: "/developers/sandbox" },
   },
-  "/status": {
+  "/developers/status": {
     badge: "STATUS",
     text: "Real-time platform health across KYC, escrow, consent, and webhooks.",
-    cta: { label: "View status", href: "/status" },
+    cta: { label: "View status", href: "/developers/status" },
   },
   "/careers": {
     badge: "CAREERS",

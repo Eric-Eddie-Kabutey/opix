@@ -3,6 +3,7 @@ import { site } from "@/content/site";
 import { products } from "@/content/products";
 import { useCases } from "@/content/useCases";
 import { roles } from "@/content/careers";
+import { ALL_ARTICLES_WITH_FEATURED } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
@@ -16,13 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/demo",
     "/blog",
     "/developers",
-    "/docs",
-    "/docs/java",
-    "/docs/nextjs",
-    "/api-reference",
-    "/sandbox",
+    "/developers/docs",
+    "/developers/docs/java",
+    "/developers/docs/nextjs",
+    "/developers/api-reference",
+    "/developers/sandbox",
     "/developers/changelog",
-    "/status",
+    "/developers/status",
+    "/developers/support",
     "/careers",
   ];
 
@@ -30,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...products.map((p) => `/products/${p.slug}`),
     ...useCases.map((u) => `/use-cases/${u.slug}`),
     ...roles.map((r) => `/careers/${r.slug}`),
+    ...ALL_ARTICLES_WITH_FEATURED.map((a) => `/blog/${a.slug}`),
   ];
 
   return [...staticPaths, ...dynamic].map((path) => ({

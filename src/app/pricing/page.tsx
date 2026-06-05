@@ -15,10 +15,8 @@ export default function PricingPage() {
   return (
     <>
       <PageHero
-        eyebrow={pricing.label}
         title={pricing.headline}
         subtitle={pricing.intro}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Pricing", href: "/pricing" }]}
       />
       <Section tone="light">
         <div className="grid gap-6 lg:grid-cols-3 lg:items-start">

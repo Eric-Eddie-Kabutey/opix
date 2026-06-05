@@ -1,27 +1,20 @@
-import { Icon } from "@/components/ui/Icon";
-import { ScrollReveal, type RevealOrder } from "./ScrollReveal";
+import { CardCarousel } from "./CardCarousel";
 
 type Step = { number: string; title: string; body: string };
 
-// "How it works" cards — scroll-linked reveal (slide in from the right), powered
-// by the reusable ScrollReveal. Pass order="reverse" to reveal the last step first.
-export function HowItWorksCards({ steps, order = "forward" }: { steps: Step[]; order?: RevealOrder }) {
+// "How it works" steps as a coverflow carousel — the centered step is full-size,
+// neighbours scaled down. (The connecting arrows from the grid layout don't apply
+// to a carousel, so they're dropped; the step numbers carry the sequence.)
+export function HowItWorksCards({ steps }: { steps: Step[] }) {
   return (
-    <ScrollReveal className="grid gap-6 md:grid-cols-3" direction="right" order={order}>
-      {steps.map((step, i) => (
-        <div key={step.number} className="relative">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-7">
-            <span className="font-display text-4xl text-teal-600">{step.number}</span>
-            <h3 className="mt-4 text-lg font-semibold text-navy-900">{step.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.body}</p>
-          </div>
-          {i < steps.length - 1 && (
-            <span className="absolute -right-7 top-1/2 z-20 hidden -translate-y-1/2 text-teal-500 md:block">
-              <Icon name="arrow-right" className="h-8 w-8" />
-            </span>
-          )}
+    <CardCarousel ariaLabel="How OPIX works, step by step">
+      {steps.map((step) => (
+        <div key={step.number} className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-7">
+          <span className="font-display text-4xl text-teal-600">{step.number}</span>
+          <h3 className="mt-4 text-lg font-semibold text-navy-900">{step.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.body}</p>
         </div>
       ))}
-    </ScrollReveal>
+    </CardCarousel>
   );
 }

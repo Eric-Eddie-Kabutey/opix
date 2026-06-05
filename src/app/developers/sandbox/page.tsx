@@ -1,31 +1,42 @@
 import type { Metadata } from "next";
 import { sandbox } from "@/content/developers";
 import { pageMeta } from "@/content/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { Section } from "@/components/ui/Section";
+import { DocsLayout } from "@/components/dev/DocsLayout";
 import { Icon } from "@/components/ui/Icon";
+import { Button } from "@/components/ui/Button";
 import { StatsBar } from "@/components/sections/StatsBar";
 
 export const metadata: Metadata = pageMeta({
   title: sandbox.meta.title,
   description: sandbox.meta.description,
-  path: "/sandbox",
+  path: "/developers/sandbox",
 });
 
 export default function SandboxPage() {
   return (
-    <>
-      <PageHero
-        eyebrow={sandbox.label}
-        title={sandbox.headline}
-        subtitle={sandbox.intro}
-        primary={sandbox.primary}
-        secondary={sandbox.secondary}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Sandbox", href: "/sandbox" }]}
-      />
+    <DocsLayout
+      title={sandbox.headline}
+      description={sandbox.intro}
+      crumbs={[
+        { name: "Home", href: "/" },
+        { name: "Developers", href: "/developers" },
+        { name: "Sandbox", href: "/developers/sandbox" },
+      ]}
+    >
+      <section>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button href={sandbox.primary.href} size="lg" withArrow>
+            {sandbox.primary.label}
+          </Button>
+          <Button href={sandbox.secondary.href} variant="secondary" size="lg">
+            {sandbox.secondary.label}
+          </Button>
+        </div>
+      </section>
 
-      <Section tone="white">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <section>
+        <h2 className="font-display text-2xl text-navy-900">What you get</h2>
+        <div className="mt-5 grid gap-5 sm:grid-cols-2">
           {sandbox.features.map((f) => (
             <div key={f.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/10 text-teal-600">
@@ -36,24 +47,20 @@ export default function SandboxPage() {
             </div>
           ))}
         </div>
-      </Section>
+      </section>
 
-      <Section tone="dark">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h2 className="font-display text-3xl text-white">Instant access. Zero risk.</h2>
-            <p className="mt-4 text-slate-300">{sandbox.access}</p>
-          </div>
+      {/* <section>
+        <h2 className="font-display text-2xl text-navy-900">Instant access. Zero risk.</h2>
+        <p className="mt-3 text-slate-600">{sandbox.access}</p>
+        <div className="mt-6">
           <StatsBar
             stats={sandbox.stats.map((s) => {
               const parts = s.split(" ");
               return { value: parts[0], label: parts.slice(1).join(" ") };
             })}
-            onDark
           />
         </div>
-      </Section>
-
-    </>
+      </section> */}
+    </DocsLayout>
   );
 }

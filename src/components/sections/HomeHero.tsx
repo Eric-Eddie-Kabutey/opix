@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
 import { HeroStatBars } from "./HeroStatBars";
 import { HeroGradientBars } from "./HeroGradientBars";
+import { ScrollIndicator } from "./ScrollIndicator";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
 // Full-screen, centered, light hero. Enterprise-Blue headline, slate body, solid
@@ -38,10 +39,12 @@ export function HomeHero() {
     offset: ["start start", "end start"],
   });
 
+  // bg-hero-light
+
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden bg-hero-light"
+      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-light opacity-50" aria-hidden />
       <HeroGradientBars progress={scrollYProgress} />
@@ -90,6 +93,8 @@ export function HomeHero() {
 
         {/* <HeroStatBars /> */}
       </Container>
+
+      <ScrollIndicator />
     </section>
   );
 }

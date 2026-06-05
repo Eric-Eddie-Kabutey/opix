@@ -1,23 +1,28 @@
 import type { Metadata } from "next";
 import { status } from "@/content/developers";
 import { pageMeta } from "@/content/seo";
-import { Section } from "@/components/ui/Section";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { DocsLayout } from "@/components/dev/DocsLayout";
 import { StatusBadge, ServiceRow } from "@/components/dev/StatusBadge";
 import { Icon } from "@/components/ui/Icon";
 
 export const metadata: Metadata = pageMeta({
   title: status.meta.title,
   description: status.meta.description,
-  path: "/status",
+  path: "/developers/status",
 });
 
 export default function StatusPage() {
   return (
-    <Section tone="light" className="min-h-[70vh]">
-      <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Status", href: "/status" }]} />
-
-      <div className="mx-auto mt-8 max-w-3xl">
+    <DocsLayout
+      title="Platform Status"
+      description="Real-time health of the OPIX platform and its services."
+      crumbs={[
+        { name: "Home", href: "/" },
+        { name: "Developers", href: "/developers" },
+        { name: "Status", href: "/developers/status" },
+      ]}
+    >
+      <section>
         <div className="rounded-2xl border border-success/30 bg-success/5 p-7 text-center">
           <span className="inline-flex items-center gap-2.5 rounded-full bg-white px-4 py-2 shadow-sm">
             <Icon name="check" className="h-5 w-5 text-success" strokeWidth={2.5} />
@@ -46,7 +51,7 @@ export default function StatusPage() {
             </div>
           ))}
         </div>
-      </div>
-    </Section>
+      </section>
+    </DocsLayout>
   );
 }

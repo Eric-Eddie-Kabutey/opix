@@ -65,7 +65,7 @@ function StackedProductCard({
       style={{ zIndex: index + 1 }}
     >
       <motion.article
-        style={{ scale: reduceMotion ? 1 : scaleMv }}
+        // style={{ scale: reduceMotion ? 1 : scaleMv }}
         className="w-full origin-top overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-card to-slate-50 "
       >
         <div className="grid w-full items-center gap-8 p-6 sm:gap-10 sm:p-10 lg:grid-cols-2 lg:gap-16 lg:p-16">
@@ -73,7 +73,7 @@ function StackedProductCard({
           <div className={flip ? "lg:order-2" : ""}>
             <span className="eyebrow text-accent-hover">{product.category}</span>
             <h3 className="mt-3 type-h2 text-foreground">{product.tagline}</h3>
-            <p className="mt-4 text-muted-foreground">{product.summary}</p>
+            <p className="mt-4 text-muted-foreground">{product.hero.subheadline}</p>
             <CheckList items={product.keyBenefits} className="mt-6" />
             <Link
               href={`/products/${product.slug}`}

@@ -38,7 +38,7 @@ export const primaryNav: MegaItem[] = [
         heading: "Platform Tools",
         links: [
           { label: "API Suite", href: "/developers", description: "RESTful APIs for seamless integration", icon: "code" },
-          { label: "Mobile SDK", href: "/docs", description: "iOS & Android native SDKs", icon: "mobile" },
+          { label: "Mobile SDK", href: "/developers/docs", description: "iOS & Android native SDKs", icon: "mobile" },
           { label: "Dashboard", href: "/signup", description: "Real-time analytics and compliance", icon: "chart" },
         ],
       },
@@ -75,18 +75,18 @@ export const primaryNav: MegaItem[] = [
       {
         heading: "Build",
         links: [
-          { label: "Documentation", href: "/docs", description: "Get started in under 10 minutes", icon: "book" },
-          { label: "API Reference", href: "/api-reference", description: "Interactive, searchable endpoints", icon: "code" },
+          { label: "Documentation", href: "/developers/docs", description: "Get started in under 10 minutes", icon: "book" },
+          { label: "API Reference", href: "/developers/api-reference", description: "Interactive, searchable endpoints", icon: "code" },
           { label: "SDKs & Libraries", href: "/developers#sdks", description: "Java, Next.js, React, and more", icon: "network" },
-          { label: "Sandbox", href: "/sandbox", description: "Test everything, break nothing", icon: "play" },
+          { label: "Sandbox", href: "/developers/sandbox", description: "Test everything, break nothing", icon: "play" },
         ],
       },
       {
         heading: "Operate",
         links: [
           { label: "Changelog", href: "/developers/changelog", description: "What's new and what's next", icon: "refresh" },
-          { label: "Status", href: "/status", description: "Real-time platform health", icon: "check" },
-          { label: "Support", href: "/contact", description: "Talk to our engineering team", icon: "support" },
+          { label: "Status", href: "/developers/status", description: "Real-time platform health", icon: "check" },
+          { label: "Support", href: "/developers/support", description: "Talk to our engineering team", icon: "support" },
         ],
       },
     ],

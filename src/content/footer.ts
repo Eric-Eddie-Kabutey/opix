@@ -38,12 +38,12 @@ export const footerColumns: NavGroup[] = [
   {
     heading: "Resources",
     links: [
-      { label: "Documentation", href: "/docs" },
-      { label: "API Reference", href: "/api-reference" },
+      { label: "Documentation", href: "/developers/docs" },
+      { label: "API Reference", href: "/developers/api-reference" },
       { label: "SDKs & Libraries", href: "/developers#sdks" },
       { label: "Changelog", href: "/developers/changelog" },
-      { label: "Sandbox", href: "/sandbox" },
-      { label: "Status Page", href: "/status" },
+      { label: "Sandbox", href: "/developers/sandbox" },
+      { label: "Status Page", href: "/developers/status" },
     ],
   },
   {

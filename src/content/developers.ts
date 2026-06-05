@@ -4,8 +4,8 @@ export const devHero = {
   headline: "Built with Java. Powered by Next.js. Ready for Africa.",
   subheadline:
     "OPIX runs on a battle-tested Java Spring Boot backend and a modern Next.js frontend. Whether you're integrating our REST APIs into your Java microservices or building customer-facing flows with our React components, we've got you covered. Clean code. Fast integration. Production-ready.",
-  primary: { label: "Read the Docs", href: "/docs" },
-  secondary: { label: "Try the Sandbox", href: "/sandbox" },
+  primary: { label: "Read the Docs", href: "/developers/docs" },
+  secondary: { label: "Try the Sandbox", href: "/developers/sandbox" },
   trustLine: "Trusted by 50+ African banks and fintechs. 99.9% API uptime. Sub-200ms response time.",
   stats: [
     { value: "< 200ms", label: "Average API response time" },
@@ -54,7 +54,7 @@ export const techStack = {
       "Sub-200ms p95 response time for KYC search",
       "Horizontal scaling via Kubernetes HPA",
     ],
-    cta: { label: "Explore Java SDK", href: "/docs/java" },
+    cta: { label: "Explore Java SDK", href: "/developers/docs/java" },
   },
   frontend: {
     title: "Next.js 14 Frontend SDK",
@@ -73,7 +73,7 @@ export const techStack = {
       "Bundle size < 150KB gzipped for core SDK",
       "Lazy loading for biometric capture modules",
     ],
-    cta: { label: "Explore Next.js SDK", href: "/docs/nextjs" },
+    cta: { label: "Explore Next.js SDK", href: "/developers/docs/nextjs" },
   },
   middleware: {
     title: "What Connects Them",
@@ -125,7 +125,7 @@ if (response.isVerified()) {
 }`,
       },
     ],
-    cta: { label: "Full Java Guide", href: "/docs/java" },
+    cta: { label: "Full Java Guide", href: "/developers/docs/java" },
   },
   next: {
     badge: "Frontend",
@@ -170,7 +170,7 @@ export default function OnboardingPage() {
 }`,
       },
     ],
-    cta: { label: "Full Next.js Guide", href: "/docs/nextjs" },
+    cta: { label: "Full Next.js Guide", href: "/developers/docs/nextjs" },
   },
 };
 
@@ -187,7 +187,7 @@ export const sdks = {
       description: "Full-featured Java client for Spring Boot and standalone applications. Supports sync and async operations.",
       install: "africa.opix:opix-java-sdk:2.1.0",
       features: ["Spring Boot auto-configuration", "Reactive WebClient (WebFlux)", "Connection pooling & retry logic", "HSM integration helpers"],
-      docs: "/docs/java",
+      docs: "/developers/docs/java",
       github: "https://github.com/opix/java-sdk",
     },
     {
@@ -197,7 +197,7 @@ export const sdks = {
       description: "React components and hooks for identity verification, consent flows, and escrow dashboards. App Router ready.",
       install: "npm install @opix/next-sdk",
       features: ["React Server Components compatible", "Biometric capture with liveness", "Consent UI with scoped permissions", "Dark mode & Tailwind theming"],
-      docs: "/docs/nextjs",
+      docs: "/developers/docs/nextjs",
       github: "https://github.com/opix/next-sdk",
     },
     {
@@ -207,7 +207,7 @@ export const sdks = {
       description: "Framework-agnostic React hooks and components for non-Next.js applications. Works with Vite, CRA, or any React setup.",
       install: "npm install @opix/react-sdk",
       features: ["Hooks for all API operations", "Biometric capture components", "Consent management UI", "Customizable styling"],
-      docs: "/docs",
+      docs: "/developers/docs",
       github: "https://github.com/opix/react-sdk",
     },
   ],
@@ -239,7 +239,7 @@ export const sandbox = {
   access:
     "Get sandbox access instantly when you create an OPIX developer account. No approval required. No credit card. Just sign up and start building.",
   primary: { label: "Launch Sandbox", href: "/signup" },
-  secondary: { label: "View Sandbox Docs", href: "/docs" },
+  secondary: { label: "View Sandbox Docs", href: "/developers/docs" },
   stats: ["50+ test scenarios", "100% API coverage", "Unlimited sandbox calls", "Instant access"],
 };
 
@@ -342,7 +342,7 @@ export const community = {
   label: "Community & Support",
   headline: "You're not building alone.",
   channels: [
-    { icon: "book", title: "Documentation", body: "Comprehensive guides, API reference, and integration tutorials. Searchable. Versioned. Always up to date.", cta: { label: "Read Docs", href: "/docs" } },
+    { icon: "book", title: "Documentation", body: "Comprehensive guides, API reference, and integration tutorials. Searchable. Versioned. Always up to date.", cta: { label: "Read Docs", href: "/developers/docs" } },
     { icon: "chat", title: "Discord Community", body: "Join 1,200+ African developers building with OPIX. Ask questions. Share projects. Get help from the team.", cta: { label: "Join Discord", href: "https://discord.gg/opix" } },
     { icon: "github", title: "Open Source", body: "Our SDKs are open source. Contribute, report issues, or request features. We review PRs weekly.", cta: { label: "GitHub Org", href: "https://github.com/opix" } },
     { icon: "support", title: "Engineering Support", body: "Stuck on an integration? Our engineering team is here. Priority support for enterprise clients.", cta: { label: "Open Ticket", href: "/contact" } },

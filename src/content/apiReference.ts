@@ -68,7 +68,7 @@ export const apiReference = {
       ],
     },
   ] satisfies EndpointGroup[],
-  cta: { primary: { label: "Browse Full API Reference", href: "/api-reference" }, secondary: { label: "Download OpenAPI Spec", href: "/api/opix-openapi-3.0.yaml" } },
+  cta: { primary: { label: "Browse Full API Reference", href: "/developers/api-reference" }, secondary: { label: "Download OpenAPI Spec", href: "/api/opix-openapi-3.0.yaml" } },
 };
 
 // Multi-language code examples — Developer Hub §9

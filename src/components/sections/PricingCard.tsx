@@ -13,7 +13,7 @@ type Tier = {
 export function PricingCard({ tier }: { tier: Tier }) {
   return (
     <div
-      className={`relative flex flex-col rounded-2xl border p-7 ${
+      className={`relative flex flex-col h-full rounded-2xl border p-7 ${
         tier.featured
           ? "border-teal-500/40 bg-navy-900 text-white shadow-[var(--shadow-lift)] lg:-my-3 lg:py-10"
           : "border-slate-200 bg-white text-navy-900"

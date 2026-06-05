@@ -10,7 +10,7 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+    <div className="mx-auto max-w-[1600px] w-full divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
       {faqs.map((faq, i) => {
         const isOpen = open === i;
         return (

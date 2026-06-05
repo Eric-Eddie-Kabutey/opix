@@ -18,10 +18,8 @@ export default function ProductsPage() {
   return (
     <>
       <PageHero
-        eyebrow={productsIndex.label}
         title={productsIndex.headline}
         subtitle={productsIndex.intro}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Products", href: "/products" }]}
         primary={{ label: "Start Building", href: "/signup" }}
         secondary={{ label: "Talk to Sales", href: "/contact" }}
       />

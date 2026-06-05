@@ -26,16 +26,10 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <PageHero
-        eyebrow="Use Case"
         title={uc.hero.headline}
         subtitle={uc.hero.subheadline}
         primary={{ label: "Talk to Sales", href: "/contact" }}
         secondary={{ label: "See How It Works", href: "/demo" }}
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Use Cases", href: "/use-cases" },
-          { name: uc.name, href: `/use-cases/${slug}` },
-        ]}
       />
 
       {uc.placeholder && (

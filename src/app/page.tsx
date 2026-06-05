@@ -7,51 +7,98 @@ import {
   developerTeaser,
 } from "@/content/home";
 import { products } from "@/content/products";
+import { homeHero } from "@/content/home";
 import { useCases } from "@/content/useCases";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { HomeHero } from "@/components/sections/HomeHero";
 import { HowItWorksCards } from "@/components/sections/HowItWorksCards";
-import { ScrollReveal } from "@/components/sections/ScrollReveal";
-import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { CardCarousel } from "@/components/sections/CardCarousel";
+import { FeatureCard } from "@/components/sections/FeatureGrid";
 import { UseCaseCard } from "@/components/sections/Cards";
 import { ProductStackShowcase } from "@/components/sections/ProductStackShowcase";
-import { SecurityPillars, TrustBadgeRow } from "@/components/sections/SecurityPillars";
+import {
+  SecurityPillars,
+  TrustBadgeRow,
+} from "@/components/sections/SecurityPillars";
 import { TestimonialCard } from "@/components/sections/Testimonials";
 import { CodeBlock } from "@/components/dev/CodeBlock";
+import { StatsBar } from "@/components/sections/StatsBar";
 
-const showcaseSlugs = ["kyc-connect", "background-verification", "freelancer-trust", "escrow"];
+const showcaseSlugs = [
+  "kyc-connect",
+  "background-verification",
+  "freelancer-trust",
+  "escrow",
+];
 
 export default function HomePage() {
-  const showcase = showcaseSlugs.map((s) => products.find((p) => p.slug === s)!).filter(Boolean);
+  const showcase = showcaseSlugs
+    .map((s) => products.find((p) => p.slug === s)!)
+    .filter(Boolean);
 
   return (
     <>
       <HomeHero />
 
+      {/* STAT WIDGET */}
+      <div className="container-page bg-white">
+        <StatsBar stats={homeHero.stats} onDark />
+        <p className="text-center text-sm text-slate-400 pb-6"> {homeHero.trustLine} </p>
+      </div>
+
       {/* PROBLEM */}
       <Section tone="white" stack>
-        <SectionHeader eyebrow={problem.label} title={problem.headline} align="center" className="mb-14" />
-        <ScrollReveal className="grid gap-5 md:grid-cols-3" direction="bottom">
+        <SectionHeader
+          eyebrow={problem.label}
+          title={problem.headline}
+          align="center"
+          className="mb-14"
+        />
+        <CardCarousel ariaLabel="Problems OPIX solves">
           {problem.cards.map((card) => (
-            <div key={card.title} className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-7">
-              <h3 className="text-lg font-semibold text-navy-900">{card.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{card.body}</p>
+            <div
+              key={card.title}
+              className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-7"
+            >
+              <h3 className="text-lg font-semibold text-navy-900">
+                {card.title}
+              </h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
+                {card.body}
+              </p>
               <p className="mt-6 border-t border-slate-200 pt-5 font-display text-sm leading-snug text-navy-900">
                 {card.stat}
               </p>
             </div>
           ))}
-        </ScrollReveal>
-        <p className="mt-12 text-center font-display text-xl text-slate-500">{problem.transition}</p>
+        </CardCarousel>
+        <p className="mt-12 text-center font-display text-xl text-slate-500">
+          {problem.transition}
+        </p>
       </Section>
 
       {/* SOLUTION */}
       <Section tone="light" stack shadow>
-        <SectionHeader eyebrow={solution.label} title={solution.headline} intro={solution.intro} align="center" className="mb-14" />
-        <FeatureGrid features={solution.features} columns={4} />
+        <SectionHeader
+          eyebrow={solution.label}
+          title={solution.headline}
+          intro={solution.intro}
+          align="center"
+          className="mb-14"
+        />
+        <CardCarousel ariaLabel="Solution highlights">
+          {solution.features.map((f) => (
+            <FeatureCard key={f.title} feature={f} />
+          ))}
+        </CardCarousel>
         <div className="mt-12 text-center">
-          <Button href={solution.cta.href} variant="secondary" size="lg" withArrow>
+          <Button
+            href={solution.cta.href}
+            variant="secondary"
+            size="lg"
+            withArrow
+          >
             {solution.cta.label}
           </Button>
         </div>
@@ -77,19 +124,29 @@ export default function HomePage() {
           align="center"
           className="mb-14"
         />
-        <ScrollReveal className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4" direction="bottom">
+        <CardCarousel ariaLabel="Who we serve">
           {useCases.slice(0, 4).map((uc) => (
             <UseCaseCard key={uc.slug} useCase={uc} />
           ))}
-        </ScrollReveal>
+        </CardCarousel>
       </Section>
 
       {/* HOW IT WORKS */}
       <Section tone="white" stack shadow>
-        <SectionHeader eyebrow={howItWorks.label} title={howItWorks.headline} align="center" className="mb-14" />
+        <SectionHeader
+          eyebrow={howItWorks.label}
+          title={howItWorks.headline}
+          align="center"
+          className="mb-14"
+        />
         <HowItWorksCards steps={howItWorks.steps} />
         <div className="mt-12 text-center">
-          <Button href={howItWorks.cta.href} variant="ghost" size="lg" withArrow>
+          <Button
+            href={howItWorks.cta.href}
+            variant="ghost"
+            size="lg"
+            withArrow
+          >
             {howItWorks.cta.label}
           </Button>
         </div>
@@ -99,7 +156,12 @@ export default function HomePage() {
       <Section tone="dark" id="security" stack shadow>
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <SectionHeader eyebrow={securitySection.label} title={securitySection.headline} intro={securitySection.intro} onDark />
+            <SectionHeader
+              eyebrow={securitySection.label}
+              title={securitySection.headline}
+              intro={securitySection.intro}
+              onDark
+            />
             <div className="mt-8">
               <TrustBadgeRow badges={securitySection.badges} onDark />
             </div>
@@ -110,21 +172,39 @@ export default function HomePage() {
 
       {/* TESTIMONIALS */}
       <Section tone="light" stack shadow>
-        <SectionHeader eyebrow={testimonials.label} title={testimonials.headline} align="center" className="mb-14" />
-        <ScrollReveal className="grid gap-5 md:grid-cols-3" direction="left">
+        <SectionHeader
+          eyebrow={testimonials.label}
+          title={testimonials.headline}
+          align="center"
+          className="mb-14"
+        />
+        <CardCarousel ariaLabel="Customer testimonials">
           {testimonials.items.map((t) => (
             <TestimonialCard key={t.name} t={t} />
           ))}
-        </ScrollReveal>
+        </CardCarousel>
       </Section>
 
       {/* DEVELOPERS */}
-      <Section className="shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.22)]" tone="white" stack shadow>
+      <Section
+        className="shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.22)]"
+        tone="white"
+        stack
+        shadow
+      >
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <SectionHeader eyebrow={developerTeaser.label} title={developerTeaser.headline} intro={developerTeaser.intro} />
+            <SectionHeader
+              eyebrow={developerTeaser.label}
+              title={developerTeaser.headline}
+              intro={developerTeaser.intro}
+            />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href={developerTeaser.primary.href} variant="secondary" withArrow>
+              <Button
+                href={developerTeaser.primary.href}
+                variant="secondary"
+                withArrow
+              >
                 {developerTeaser.primary.label}
               </Button>
               <Button href={developerTeaser.secondary.href} variant="ghost">
@@ -148,7 +228,6 @@ export default function HomePage() {
           />
         </div>
       </Section>
-
     </>
   );
 }

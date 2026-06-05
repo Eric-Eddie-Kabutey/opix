@@ -1,10 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { resolveFooterCta } from "@/content/footerCta";
 import { newsletter } from "@/content/footer";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+// Static import — works from src/public (webpack-resolved), unlike a /public URL.
+import footerBg from "../../public/images/footer-bg.jpg";
 
 // Route-aware final CTA at the top of the footer (the only CTA on the page).
 // Most routes render two buttons; blog/default render the newsletter field.
@@ -14,7 +17,19 @@ export function FooterCta() {
   const cta = resolveFooterCta(pathname);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-cta-glow px-6 py-12 shadow-[var(--shadow-lift)] sm:px-10 md:px-14 md:py-16">
+    <div className="relative overflow-hidden rounded-3xl  px-6 py-12 shadow-[var(--shadow-lift)] sm:px-10 md:px-14 md:py-16">
+      {/* Background image + dark overlay for text legibility */}
+      <Image
+        src={footerBg}
+        alt=""
+        aria-hidden
+        fill
+        sizes="100vw"
+        placeholder="blur"
+        className="absolute inset-0 -z-10 object-cover"
+      />
+      <div className="absolute inset-0 -z-10 bg-navy-950/70" aria-hidden />
+
       <div className="relative max-w-xl">
         <h2 className="type-h2 text-white">{cta.heading}</h2>
         <p className="mt-3 text-base leading-relaxed text-slate-300">{cta.text}</p>

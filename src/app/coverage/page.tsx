@@ -16,9 +16,7 @@ export default function CoveragePage() {
   return (
     <>
       <PageHero
-        eyebrow="Coverage"
         title={coverage.hero.headline}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Coverage", href: "/coverage" }]}
       />
 
       <Section tone="white">

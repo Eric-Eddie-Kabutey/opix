@@ -33,16 +33,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {product.faq && <JsonLd data={faqSchema(product.faq)} />}
 
       <PageHero
-        eyebrow={product.category}
         title={product.hero.headline}
         subtitle={product.hero.subheadline}
         primary={product.hero.cta}
         secondary={{ label: "View all products", href: "/products" }}
-        crumbs={[
-          { name: "Home", href: "/" },
-          { name: "Products", href: "/products" },
-          { name: product.name, href: path },
-        ]}
       />
 
       {product.placeholder && (

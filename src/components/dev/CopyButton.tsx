@@ -4,7 +4,16 @@ import { useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 
 // Accessible copy-to-clipboard button with aria-live confirmation (docs §15 a11y).
-export function CopyButton({ text, className = "" }: { text: string; className?: string }) {
+// Icon-only; tone matches the surrounding code surface (light vs dark).
+export function CopyButton({
+  text,
+  tone = "light",
+  className = "",
+}: {
+  text: string;
+  tone?: "light" | "dark";
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -17,15 +26,22 @@ export function CopyButton({ text, className = "" }: { text: string; className?:
     }
   };
 
+  const toneCls =
+    tone === "dark"
+      ? "text-slate-400 hover:bg-white/10 hover:text-slate-200"
+      : "text-slate-400 hover:bg-slate-200/70 hover:text-navy-900";
+
   return (
     <button
       type="button"
       onClick={copy}
       aria-label={copied ? "Copied to clipboard" : "Copy code to clipboard"}
-      className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium text-slate-400 transition-colors hover:bg-white/10 hover:text-slate-200 ${className}`}
+      className={`inline-flex h-7 w-7 items-center justify-center rounded-md transition-colors ${
+        copied ? "text-success" : toneCls
+      } ${className}`}
     >
-      <Icon name={copied ? "check" : "copy"} className="h-3.5 w-3.5" strokeWidth={copied ? 2.5 : 1.6} />
-      <span aria-live="polite">{copied ? "Copied" : "Copy"}</span>
+      <Icon name={copied ? "check" : "copy"} className="h-4 w-4" strokeWidth={copied ? 2.5 : 1.6} />
+      <span className="sr-only" aria-live="polite">{copied ? "Copied" : "Copy"}</span>
     </button>
   );
 }

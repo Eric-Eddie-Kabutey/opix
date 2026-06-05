@@ -16,10 +16,8 @@ export default function UseCasesPage() {
   return (
     <>
       <PageHero
-        eyebrow={useCasesIndex.label}
         title={useCasesIndex.headline}
         subtitle={useCasesIndex.intro}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Use Cases", href: "/use-cases" }]}
       />
       <Section tone="light">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

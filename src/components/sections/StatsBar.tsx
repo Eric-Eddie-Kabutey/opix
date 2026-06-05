@@ -10,11 +10,11 @@ export function StatsBar({ stats, onDark = false }: { stats: Stat[]; onDark?: bo
       {stats.map((s) => (
         <div key={s.label} className="px-6 py-6 text-center sm:py-7">
           <dt className="sr-only">{s.label}</dt>
-          <dd>
+          <dd className="flex flex-row justify-center items-center">
             <span className={`block font-display text-3xl md:text-4xl ${onDark ? "text-teal-400" : "text-teal-600"}`}>
               {s.value}
             </span>
-            <span className={`mt-1.5 block text-sm ${onDark ? "text-slate-400" : "text-slate-500"}`}>
+            <span className={`ml-4 block max-w-[120px] text-left text-[14px] leading-none ${onDark ? "text-slate-400" : "text-slate-500"}`}>
               {s.label}
             </span>
           </dd>

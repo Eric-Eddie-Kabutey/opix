@@ -31,10 +31,8 @@ export default async function LegalPage({ params }: { params: Promise<{ slug: st
   return (
     <>
       <PageHero
-        eyebrow="Legal"
         title={page.title}
         subtitle={page.intro}
-        crumbs={[{ name: "Home", href: "/" }, { name: page.title, href: `/legal/${slug}` }]}
       />
       <Section tone="white">
         <div className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground">

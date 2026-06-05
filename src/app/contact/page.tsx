@@ -15,10 +15,8 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
         title={contact.headline}
         subtitle={contact.subheadline}
-        crumbs={[{ name: "Home", href: "/" }, { name: "Contact", href: "/contact" }]}
       />
       <Section tone="white">
         <div className="grid gap-5 md:grid-cols-3">

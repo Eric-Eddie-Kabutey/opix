@@ -27,15 +27,6 @@ export default async function ApplyPage({ params }: { params: Promise<{ role: st
 
   return (
     <Section tone="light" className="min-h-[70vh]">
-      <Breadcrumbs
-        items={[
-          { name: "Home", href: "/" },
-          { name: "Careers", href: "/careers" },
-          ...(found ? [{ name: found.title, href: `/careers/${role}` }] : []),
-          { name: "Apply", href: `/careers/apply/${role}` },
-        ]}
-      />
-
       <div className="mx-auto mt-8 max-w-2xl">
         <h1 className="font-display text-3xl text-navy-900 md:text-4xl">
           {isGeneral ? "We're always looking for exceptional people." : `Apply for ${found?.title ?? "this role"}`}

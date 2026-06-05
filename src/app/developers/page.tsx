@@ -49,8 +49,8 @@ export default function DevelopersPage() {
           </div>
 
           <div className="mt-12 grid gap-4 lg:grid-cols-2">
-            <CodeBlock lang="java" filename="Backend.java" code={devHero.javaCode} />
-            <CodeBlock lang="tsx" filename="OnboardingPage.tsx" code={devHero.nextCode} />
+            <CodeBlock lang="java" filename="Backend.java" code={devHero.javaCode} tone="dark" />
+            <CodeBlock lang="tsx" filename="OnboardingPage.tsx" code={devHero.nextCode} tone="dark" />
           </div>
 
           <p className="mt-8 text-sm text-slate-400">{devHero.trustLine}</p>
@@ -117,7 +117,7 @@ export default function DevelopersPage() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Button href="/api-reference" variant="secondary" size="lg" withArrow>Browse Full API Reference</Button>
+          <Button href="/developers/api-reference" variant="secondary" size="lg" withArrow>Browse Full API Reference</Button>
         </div>
       </Section>
 
@@ -128,7 +128,7 @@ export default function DevelopersPage() {
           {codeExamples.map((ex) => (
             <div key={ex.title}>
               <h3 className="mb-3 text-sm font-medium text-white">{ex.title}</h3>
-              <CodeTabs tabs={ex.tabs} title={ex.title} />
+              <CodeTabs tabs={ex.tabs} title={ex.title} tone="dark" />
             </div>
           ))}
         </div>

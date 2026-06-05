@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { sectionTones, type SectionTone } from "@/lib/theme";
+import { StackPanel } from "./StackPanel";
 
 // Section background tones are centralized in src/lib/theme.ts (sectionTones).
 export function Section({
@@ -20,16 +21,24 @@ export function Section({
   stack?: boolean;
   shadow?: boolean;
 }) {
+  const baseClass = cn(
+    shadow ? "shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.22)]" : "",
+    sectionTones[tone],
+  );
+
+  // Stacking panels measure themselves (see StackPanel): they size to their
+  // children and pin only while they fit the viewport — so short panels leave no
+  // whitespace and tall panels scroll fully instead of clipping below the fold.
+  if (stack) {
+    return (
+      <StackPanel baseClass={baseClass} className={className} id={id}>
+        {children}
+      </StackPanel>
+    );
+  }
+
   return (
-    <section
-      id={id}
-      className={cn(
-        shadow ? "shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.22)]" : "",
-        sectionTones[tone],
-        stack ? "sticky top-0 flex min-h-svh flex-col justify-center py-20 md:py-24" : "py-20 md:py-28",
-        className,
-      )}
-    >
+    <section id={id} className={cn(baseClass, "py-20 md:py-28", className)}>
       <div className="container-page w-full">{children}</div>
     </section>
   );
