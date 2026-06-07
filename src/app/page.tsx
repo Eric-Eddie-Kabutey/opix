@@ -42,7 +42,7 @@ export default function HomePage() {
       <HomeHero />
 
       {/* STAT WIDGET */}
-      <div className="container-page bg-white">
+      <div className="container-page py-6 md:py-10 bg-white">
         <StatsBar stats={homeHero.stats} onDark />
         <p className="text-center text-sm text-slate-400 pb-6"> {homeHero.trustLine} </p>
       </div>
@@ -59,7 +59,8 @@ export default function HomePage() {
           {problem.cards.map((card) => (
             <div
               key={card.title}
-              className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-7"
+              // rounded-2xl border border-slate-200
+              className="flex h-full flex-col bg-slate-50 p-7"
             >
               <h3 className="text-lg font-semibold text-navy-900">
                 {card.title}
@@ -187,7 +188,7 @@ export default function HomePage() {
 
       {/* DEVELOPERS */}
       <Section
-        className="shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.22)]"
+        // className="shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.1)]"
         tone="white"
         stack
         shadow

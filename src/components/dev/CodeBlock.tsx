@@ -12,7 +12,7 @@ export const codeSurface: Record<CodeTone, { wrap: string; header: string; label
     code: "text-navy-900",
   },
   dark: {
-    wrap: "border-white/10 bg-navy-950",
+    wrap: "border-white/10 bg-primary",
     header: "border-white/10",
     label: "text-slate-400",
     code: "text-slate-200",

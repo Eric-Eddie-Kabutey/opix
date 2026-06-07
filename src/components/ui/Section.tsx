@@ -22,7 +22,7 @@ export function Section({
   shadow?: boolean;
 }) {
   const baseClass = cn(
-    shadow ? "shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.22)]" : "",
+    shadow ? "shadow-[0_-30px_60px_-32px_rgba(11,23,36,0.02)]" : "",
     sectionTones[tone],
   );
 

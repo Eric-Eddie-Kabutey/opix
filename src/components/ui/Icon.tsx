@@ -180,7 +180,8 @@ const paths: Record<string, React.ReactNode> = {
   twitter: <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />,
   plus: <path d="M5 12h14M12 5v14" />,
   minus: <path d="M5 12h14" />,
-  star: <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z" />,
+  star: <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z" fill="currentColor"
+  stroke="currentColor"/>,
   briefcase: (
     <>
       <rect width="20" height="14" x="2" y="7" rx="2" />

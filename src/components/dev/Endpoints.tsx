@@ -3,7 +3,7 @@ import type { EndpointGroup as Group } from "@/content/apiReference";
 
 const methodColor: Record<string, string> = {
   GET: "bg-teal-500/15 text-teal-700",
-  POST: "bg-navy-900/10 text-navy-800",
+  POST: "bg-primary/10 text-navy-800",
   PATCH: "bg-gold-500/15 text-gold-600",
   DELETE: "bg-danger/10 text-danger",
 };

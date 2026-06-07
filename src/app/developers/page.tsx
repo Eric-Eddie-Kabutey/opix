@@ -67,7 +67,7 @@ export default function DevelopersPage() {
           <StackCard data={techStack.backend} icon="code" />
           <StackCard data={techStack.frontend} icon="laptop" />
         </div>
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-navy-900 p-7 text-white">
+        <div className="mt-6 rounded-2xl border border-slate-200 bg-primary p-7 text-white">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500/15 text-teal-400">
               <Icon name="network" className="h-5 w-5" />
@@ -95,7 +95,7 @@ export default function DevelopersPage() {
                 {path.steps.map((step, i) => (
                   <li key={step.title}>
                     <p className="mb-2 flex items-center gap-2 text-sm font-medium text-navy-900">
-                      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-navy-900 text-[11px] font-semibold text-white">{i + 1}</span>
+                      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-white">{i + 1}</span>
                       {step.title}
                     </p>
                     <CodeBlock lang={step.lang} code={step.code} />
@@ -164,7 +164,7 @@ export default function DevelopersPage() {
               rel={c.cta.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
             >
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-navy-900/5 text-navy-900">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-navy-900">
                 <Icon name={c.icon} className="h-5 w-5" />
               </span>
               <h3 className="mt-4 text-base font-semibold text-navy-900">{c.title}</h3>

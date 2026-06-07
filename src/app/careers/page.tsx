@@ -52,7 +52,7 @@ export default function CareersPage() {
       />
 
       {/* STAT WIDGET */}
-      <div className="container-page bg-white">
+      <div className="container-page py-6 md:py-10 bg-white">
         <StatsBar stats={careersHero.stats} onDark />
         <p className="text-center text-sm text-slate-400 pb-6"> {careersHero.trustLine} </p>
       </div>
@@ -80,7 +80,7 @@ export default function CareersPage() {
         />
         <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
           {culture.pillars.map((p) => (
-            <div key={p.title} className="bg-navy-900 p-7">
+            <div key={p.title} className="bg-primary p-7">
               <h3 className="font-display text-xl text-white">{p.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">
                 {p.body}

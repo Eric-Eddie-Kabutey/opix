@@ -1,12 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { homeHero } from "@/content/home";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
-import { HeroStatBars } from "./HeroStatBars";
-import { HeroGradientBars } from "./HeroGradientBars";
 import { ScrollIndicator } from "./ScrollIndicator";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
@@ -34,20 +32,12 @@ export function HomeHero() {
           transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const, delay },
         };
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  // bg-hero-light
-
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden"
+      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden bg-hero-aurora"
     >
-      <div className="absolute inset-0 bg-grid-light opacity-50" aria-hidden />
-      <HeroGradientBars progress={scrollYProgress} />
+      <div className="absolute inset-0 bg-grid-light opacity-20" aria-hidden />
 
       <Container className="relative flex flex-col items-center py-16 text-center">
         {/* <span className="eyebrow inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-accent-hover animate-fade-up">
@@ -55,7 +45,10 @@ export function HomeHero() {
           {homeHero.eyebrow}
         </span> */}
 
-        <h1 className="mt-6 z-30 max-w-4xl type-hero text-primary animate-fade-up [animation-delay:60ms]">
+        {/* Entrance is choreographed with the aurora: the clouds bloom in (~0.5s),
+            then the headline fades up + sweeps, then the subheadline and buttons
+            cascade off its completion (reveal() below). */}
+        <h1 className="mt-6 z-30 max-w-4xl type-hero capitalize text-primary animate-fade-up [animation-delay:500ms]">
           <DiaTextReveal
             text={homeHero.headline}
             // Final/resting color of the text — must be a real token in this app
@@ -63,6 +56,8 @@ export function HomeHero() {
             textColor="var(--color-primary)"
             // Brand sweep palette (teal → navy → gold) instead of the demo candy colors.
             colors={["var(--color-accent)", "var(--color-primary)", "var(--color-gold-500)"]}
+            // Wait for the aurora bloom + headline fade before the color sweep runs.
+            delay={0.6}
             onComplete={() => setHeadlineDone(true)}
           />
         </h1>
@@ -94,7 +89,8 @@ export function HomeHero() {
         {/* <HeroStatBars /> */}
       </Container>
 
-      <ScrollIndicator />
+      {/* Final beat of the cascade: appears once the headline has resolved. */}
+      <ScrollIndicator show={headlineDone} />
     </section>
   );
 }

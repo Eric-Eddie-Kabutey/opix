@@ -103,7 +103,7 @@ export function ApplyForm({ roleTitle }: { roleTitle?: string }) {
             type="file"
             required
             accept=".pdf,.doc,.docx"
-            className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-navy-900 file:px-4 file:py-2.5 file:text-sm file:font-medium file:text-white hover:file:bg-navy-800"
+            className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2.5 file:text-sm file:font-medium file:text-white hover:file:bg-primary"
           />
           <p className="mt-1.5 text-xs text-slate-400">PDF / DOC / DOCX, max 5MB.</p>
         </div>

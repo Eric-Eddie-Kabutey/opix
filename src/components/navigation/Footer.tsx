@@ -90,7 +90,7 @@ export function Footer() {
                 lengthAdjust="spacingAndGlyphs"
                 fontSize={400}
                 // Use CSS (not the SVG attribute) so the --font-wordmark var resolves.
-                style={{ fontFamily: "var(--font-wordmark)" }}
+                style={{ fontFamily: "var(--font-wordmark)" ,fill: "var(--color-primary)"}}
               >
                 OPIX
               </text>

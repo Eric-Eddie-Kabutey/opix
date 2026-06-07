@@ -22,9 +22,9 @@
 @theme {
   /* ---- §1 BRAND PALETTE (raw colors — edit these to rebrand) -------------- */
   --brand-enterprise: #12355b; /* Enterprise Blue — brand / structural        */
-  --brand-stone: #f1f2f3;      /* Offwhite — neutral surface (was warm stone)  */
+  --brand-stone: #f7f7f7;      /* Offwhite — neutral surface (was warm stone)  */
   --brand-ink: #0b1724;        /* Deep Ink — darkest (hero / footer / nav)    */
-  --brand-warm-white: #fbfbfc; /* Offwhite — page background (neutral, cool)   */
+  --brand-warm-white: #fcfcfc; /* Offwhite — page background (neutral, cool)   */
   --brand-slate-text: #243447; /* Slate Text — body / headings                */
   --brand-gray-blue: #66788a;  /* Muted Gray Blue — muted text                */
   --brand-blue-tint: #e9f0f7;  /* Soft Blue Tint — subtle fills               */
@@ -240,6 +240,140 @@
   .bg-grid-light {
     background-image: radial-gradient(circle at center, rgba(18, 53, 91, 0.06) 1px, transparent 1px);
     background-size: 26px 26px;
+  }
+
+  /* Hero aurora — vibrant sky-blue clouds billowing in from the LEFT and RIGHT
+     edges, with a clean white channel down the center for the headline (Sequence-
+     style). Two layers (::before left cluster, ::after right cluster) slowly drift
+     and "breathe" out of phase so the gradient feels alive. GPU-friendly: only
+     transform + opacity animate. */
+  .bg-hero-aurora {
+    position: relative;
+    background-color: #ffffff;
+    isolation: isolate; /* keep the animated layers behind content */
+  }
+  .bg-hero-aurora::before,
+  .bg-hero-aurora::after {
+    content: "";
+    position: absolute;
+    inset: -15%; /* oversize so drift never reveals an edge */
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  /* LEFT cluster — large bright bloom + deeper-blue core + soft top haze */
+  .bg-hero-aurora::before {
+    background-image:
+      radial-gradient(60% 80% at 2% 48%, rgba(91, 155, 217, 0.55) 0%, rgba(91, 155, 217, 0) 70%),
+      radial-gradient(34% 46% at 12% 32%, rgba(46, 96, 147, 0.42) 0%, rgba(46, 96, 147, 0) 72%),
+      radial-gradient(30% 40% at 6% 72%, rgba(120, 175, 225, 0.4) 0%, rgba(120, 175, 225, 0) 70%),
+      radial-gradient(80% 30% at 42% 2%, rgba(120, 175, 225, 0.2) 0%, rgba(120, 175, 225, 0) 70%);
+    /* Bloom in once on load, then hand off to the idle drift (delay = bloom dur). */
+    animation:
+      aurora-in-left 1.4s cubic-bezier(0.22, 1, 0.36, 1) both,
+      aurora-drift-left 16s ease-in-out 1.4s infinite;
+  }
+  /* RIGHT cluster — mirror + soft bottom haze */
+  .bg-hero-aurora::after {
+    background-image:
+      radial-gradient(60% 80% at 98% 50%, rgba(91, 155, 217, 0.55) 0%, rgba(91, 155, 217, 0) 70%),
+      radial-gradient(34% 46% at 88% 36%, rgba(46, 96, 147, 0.4) 0%, rgba(46, 96, 147, 0) 72%),
+      radial-gradient(30% 40% at 94% 72%, rgba(120, 175, 225, 0.4) 0%, rgba(120, 175, 225, 0) 70%),
+      radial-gradient(80% 28% at 58% 98%, rgba(91, 155, 217, 0.2) 0%, rgba(91, 155, 217, 0) 70%);
+    animation:
+      aurora-in-right 1.6s cubic-bezier(0.22, 1, 0.36, 1) both,
+      aurora-drift-right 20s ease-in-out 1.6s infinite;
+  }
+
+  /* One-shot entrance: clouds sweep in from their own edge as the page loads,
+     setting the stage before the text cascades. */
+  @keyframes aurora-in-left {
+    from { opacity: 0; transform: translate3d(-8%, 0, 0) scale(1.12); }
+    to   { opacity: 0.9; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  @keyframes aurora-in-right {
+    from { opacity: 0; transform: translate3d(8%, 0, 0) scale(1.12); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1.05); }
+  }
+
+  @keyframes aurora-drift-left {
+    0%   { transform: translate3d(0, 0, 0) scale(1);        opacity: 0.9; }
+    50%  { transform: translate3d(3%, -2%, 0) scale(1.08);  opacity: 1;   }
+    100% { transform: translate3d(0, 0, 0) scale(1);        opacity: 0.9; }
+  }
+  @keyframes aurora-drift-right {
+    0%   { transform: translate3d(0, 0, 0) scale(1.05);     opacity: 1;   }
+    50%  { transform: translate3d(-3%, 2%, 0) scale(1);     opacity: 0.85; }
+    100% { transform: translate3d(0, 0, 0) scale(1.05);     opacity: 1;   }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-hero-aurora::before,
+    .bg-hero-aurora::after { animation: none; }
+  }
+
+  /* Page-hero spotlight — a DIFFERENT design from the home aurora: a soft blue
+     spotlight descending from the top center, a slow rotating conic shimmer behind
+     it, and two teal corner accents. Center-top focus instead of side clouds. */
+  .bg-hero-spotlight {
+    position: relative;
+    background-color: #ffffff;
+    isolation: isolate;
+  }
+  /* ::before = rotating conic shimmer (the "alive" layer). Masked to a soft top
+     bloom so it reads as light, not a hard color wheel. */
+  .bg-hero-spotlight::before {
+    content: "";
+    position: absolute;
+    inset: -40% -40% 20% -40%; /* wide + tall, anchored toward the top */
+    z-index: -2;
+    pointer-events: none;
+    will-change: transform;
+    background:
+      conic-gradient(
+        from 0deg at 50% 30%,
+        rgba(91, 155, 217, 0.22),
+        rgba(47, 125, 115, 0.16),
+        rgba(46, 96, 147, 0.22),
+        rgba(120, 175, 225, 0.16),
+        rgba(91, 155, 217, 0.22)
+      );
+    -webkit-mask-image: radial-gradient(60% 60% at 50% 22%, #000 0%, transparent 70%);
+    mask-image: radial-gradient(60% 60% at 50% 22%, #000 0%, transparent 70%);
+    animation:
+      spotlight-in 1.5s cubic-bezier(0.22, 1, 0.36, 1) both,
+      spotlight-spin 36s linear 1.5s infinite;
+  }
+  /* ::after = static descending spotlight bloom + teal corner accents, on top of
+     the shimmer so the focus stays crisp and centered. */
+  .bg-hero-spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform, opacity;
+    background-image:
+      radial-gradient(50% 50% at 50% -6%, rgba(120, 175, 225, 0.45) 0%, rgba(120, 175, 225, 0) 65%),
+      radial-gradient(34% 40% at 50% -2%, rgba(46, 96, 147, 0.3) 0%, rgba(46, 96, 147, 0) 70%),
+      radial-gradient(40% 50% at 4% 100%, rgba(47, 125, 115, 0.16) 0%, rgba(47, 125, 115, 0) 65%),
+      radial-gradient(40% 50% at 96% 100%, rgba(47, 125, 115, 0.16) 0%, rgba(47, 125, 115, 0) 65%);
+    animation: spotlight-bloom-in 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes spotlight-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes spotlight-bloom-in {
+    from { opacity: 0; transform: translateY(-4%) scale(1.06); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes spotlight-spin {
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-hero-spotlight::before { animation: spotlight-in 0.01s both; }
+    .bg-hero-spotlight::after { animation: spotlight-bloom-in 0.01s both; }
   }
 
   /* Newsletter CTA card — deep ink base with a warm champagne corner glow */

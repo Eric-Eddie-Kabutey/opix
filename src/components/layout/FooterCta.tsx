@@ -6,8 +6,6 @@ import { resolveFooterCta } from "@/content/footerCta";
 import { newsletter } from "@/content/footer";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-// Static import — works from src/public (webpack-resolved), unlike a /public URL.
-import footerBg from "../../public/images/footer-bg.jpg";
 
 // Route-aware final CTA at the top of the footer (the only CTA on the page).
 // Most routes render two buttons; blog/default render the newsletter field.
@@ -17,10 +15,10 @@ export function FooterCta() {
   const cta = resolveFooterCta(pathname);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl  px-6 py-12 shadow-[var(--shadow-lift)] sm:px-10 md:px-14 md:py-16">
-      {/* Background image + dark overlay for text legibility */}
+    <div className="relative overflow-hidden rounded-3xl  px-6 py-16 shadow-[var(--shadow-lift)] sm:px-10 md:px-14 md:py-20">
+      {/* Route-aware background image + dark overlay for text legibility */}
       <Image
-        src={footerBg}
+        src={cta.image}
         alt=""
         aria-hidden
         fill
@@ -28,10 +26,10 @@ export function FooterCta() {
         placeholder="blur"
         className="absolute inset-0 -z-10 object-cover"
       />
-      <div className="absolute inset-0 -z-10 bg-navy-950/70" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-primary/70" aria-hidden />
 
       <div className="relative max-w-xl">
-        <h2 className="type-h2 text-white">{cta.heading}</h2>
+        <h2 className="type-h2 capitalize text-white">{cta.heading}</h2>
         <p className="mt-3 text-base leading-relaxed text-slate-300">{cta.text}</p>
 
         {cta.newsletter ? (

@@ -15,7 +15,7 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
       </blockquote>
       <figcaption className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5">
         <span
-          className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-full bg-navy-900 text-sm font-semibold text-white"
+          className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-full bg-primary text-sm font-semibold text-white"
           aria-hidden
         >
           {t.name

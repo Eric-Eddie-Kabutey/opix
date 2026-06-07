@@ -25,7 +25,7 @@ export function SDKCard({ sdk }: { sdk: SDK }) {
       <p className="mt-0.5 font-mono text-xs text-slate-400">{sdk.version}</p>
       <p className="mt-3 text-sm leading-relaxed text-slate-600">{sdk.description}</p>
 
-      <div className="mt-4 flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-navy-950 px-3 py-2">
+      <div className="mt-4 flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-primary px-3 py-2">
         <code className="overflow-x-auto whitespace-nowrap font-mono text-xs text-slate-200">{sdk.install}</code>
         <CopyButton text={sdk.install} />
       </div>

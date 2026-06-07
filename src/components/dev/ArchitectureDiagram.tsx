@@ -22,7 +22,7 @@ export function ArchitectureDiagram({ layers }: { layers: Layer[] }) {
               {layer.items.map((item) => (
                 <li
                   key={item}
-                  className="rounded-md border border-white/10 bg-navy-950 px-2.5 py-1 text-[11px] text-slate-300"
+                  className="rounded-md border border-white/10 bg-primary px-2.5 py-1 text-[11px] text-slate-300"
                 >
                   {item}
                 </li>

@@ -1,10 +1,9 @@
 "use client";
 
 import { useRef, useState, type ComponentProps } from "react";
-import { motion, useScroll, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
-import { HeroGradientBars } from "./HeroGradientBars";
 import { ScrollIndicator } from "./ScrollIndicator";
 import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
 
@@ -37,11 +36,6 @@ export function PageHero({
   const reduce = useReducedMotion();
   const [titleDone, setTitleDone] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
   // Gated fade-up (fade-only under reduced motion). `delay` staggers the buttons a
   // beat behind the subtitle once the title has finished revealing.
   const reveal = (delay: number) =>
@@ -69,19 +63,23 @@ export function PageHero({
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden"
+      className="relative flex min-h-[calc(100svh-6.5rem)] items-center overflow-hidden bg-hero-spotlight"
     >
-      <div className="absolute inset-0 bg-grid-light opacity-50" aria-hidden />
-      <HeroGradientBars progress={scrollYProgress} />
+      <div className="absolute inset-0 bg-grid-light opacity-20" aria-hidden />
 
       <Container className="relative flex flex-col items-center py-16 text-center">
-        <h1 className="z-30 max-w-4xl type-hero text-primary animate-fade-up [animation-delay:60ms]">
+        {/* Entrance choreographed with the spotlight: the light blooms in (~1.5s),
+            the title fades up + sweeps, then subtitle/buttons cascade off its
+            completion, and the scroll cue arrives last. */}
+        <h1 className="z-30 max-w-4xl type-hero text-primary capitalize animate-fade-up [animation-delay:500ms]">
           <DiaTextReveal
             text={title}
             // Resting color — must be a real token (Tailwind v4 names them --color-*).
             textColor="var(--color-primary)"
             // Brand sweep palette: teal → navy → gold.
             colors={["var(--color-accent)", "var(--color-primary)", "var(--color-gold-500)"]}
+            // Wait for the spotlight bloom + title fade before the color sweep runs.
+            delay={0.6}
             onComplete={() => setTitleDone(true)}
           />
         </h1>
@@ -112,7 +110,8 @@ export function PageHero({
         )}
       </Container>
 
-      <ScrollIndicator />
+      {/* Final beat of the cascade: appears once the title has resolved. */}
+      <ScrollIndicator show={titleDone} />
     </section>
   );
 }

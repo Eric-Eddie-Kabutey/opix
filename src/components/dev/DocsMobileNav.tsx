@@ -52,7 +52,7 @@ export function DocsMobileNav() {
       <div
         onClick={() => setOpen(false)}
         aria-hidden
-        className={`fixed inset-0 z-[60] bg-navy-950/40 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[60] bg-primary/40 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />

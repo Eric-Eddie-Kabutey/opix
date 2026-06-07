@@ -36,7 +36,7 @@ export function UseCaseCard({ useCase }: { useCase: UseCase }) {
       href={`/use-cases/${useCase.slug}`}
       className="h-full group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
     >
-      <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-navy-900/5 text-navy-900">
+      <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/5 text-navy-900">
         <Icon name={useCase.icon} className="h-5.5 w-5.5" width={22} height={22} />
       </span>
       <h3 className="text-lg font-semibold text-navy-900">{useCase.name}</h3>

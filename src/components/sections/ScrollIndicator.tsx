@@ -8,7 +8,9 @@ import { Icon } from "@/components/ui/Icon";
 // chevron arrow that bobs gently on a loop. Fades itself out once the user has
 // scrolled a little (it has done its job). Reduced motion keeps it static.
 // Decorative — aria-hidden.
-export function ScrollIndicator() {
+// `show` lets a parent gate the reveal into an entrance sequence (defaults to true
+// so standalone use still appears immediately). Still hides itself once scrolled.
+export function ScrollIndicator({ show = true }: { show?: boolean }) {
   const reduce = useReducedMotion();
   const [hidden, setHidden] = useState(false);
 
@@ -22,8 +24,8 @@ export function ScrollIndicator() {
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute inset-x-0 bottom-6 flex justify-center transition-opacity duration-500 ${
-        hidden ? "opacity-0" : "opacity-100"
+      className={`pointer-events-none absolute inset-x-0 bottom-6 flex justify-center transition-opacity duration-700 ${
+        !show || hidden ? "opacity-0" : "opacity-100"
       }`}
     >
       <div className="flex flex-col items-center gap-1.5 text-foreground/45">

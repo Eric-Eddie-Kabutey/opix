@@ -194,7 +194,7 @@ export function CardCarousel({
           onClick={() => stepBy(-1)}
           disabled={!looping && realActive === 0}
           aria-label="Previous slide"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 text-white transition hover:bg-navy-800 disabled:cursor-not-allowed disabled:opacity-30"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white transition hover:bg-primary disabled:cursor-not-allowed disabled:opacity-30"
         >
           <Icon name="arrow-right" className="h-5 w-5 rotate-180" />
         </button>
@@ -209,7 +209,7 @@ export function CardCarousel({
               aria-current={i === realActive}
               className={cn(
                 "h-1.5 rounded-full transition-all",
-                i === realActive ? "w-7 bg-navy-900" : "w-2.5 bg-navy-900/20 hover:bg-navy-900/40",
+                i === realActive ? "w-7 bg-primary" : "w-2.5 bg-primary/20 hover:bg-primary/40",
               )}
             />
           ))}
@@ -220,7 +220,7 @@ export function CardCarousel({
           onClick={() => stepBy(1)}
           disabled={!looping && realActive === realTotal - 1}
           aria-label="Next slide"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 text-white transition hover:bg-navy-800 disabled:cursor-not-allowed disabled:opacity-30"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white transition hover:bg-primary disabled:cursor-not-allowed disabled:opacity-30"
         >
           <Icon name="arrow-right" className="h-5 w-5" />
         </button>

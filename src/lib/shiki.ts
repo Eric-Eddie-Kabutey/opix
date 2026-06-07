@@ -39,7 +39,7 @@ function getHighlighter() {
 
 // Returns highlighted inner HTML (the <code> contents) for the given tone's theme.
 // The surrounding <pre>/surface is owned by our components, so we strip Shiki's
-// wrapper and keep just the tokens — our tones (bg-slate-50 / bg-navy-950) show
+// wrapper and keep just the tokens — our tones (bg-slate-50 / bg-primary) show
 // through. Falls back to escaped plain text for unknown languages.
 export async function highlightCode(code: string, lang: string, tone: Tone): Promise<string> {
   const resolved = langAlias[lang?.toLowerCase()] ?? null;

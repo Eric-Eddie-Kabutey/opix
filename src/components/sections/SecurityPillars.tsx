@@ -6,7 +6,7 @@ export function SecurityPillars({ pillars }: { pillars: Pillar[] }) {
   return (
     <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
       {pillars.map((p) => (
-        <div key={p.title} className="bg-navy-900 p-7">
+        <div key={p.title} className="bg-primary p-7">
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/15 text-teal-400">
             <Icon name={p.icon} className="h-5.5 w-5.5" width={22} height={22} />
           </span>

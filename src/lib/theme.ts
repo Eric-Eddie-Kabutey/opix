@@ -60,9 +60,9 @@ export const buttonVariants = {
     "bg-accent text-accent-foreground hover:bg-accent-hover shadow-[var(--shadow-accent)] focus-visible:outline-accent",
   // Brand button — Enterprise Blue (use on light surfaces)
   secondary:
-    "bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:outline-primary",
+    "bg-primary text-primary-foreground focus-visible:outline-primary",
   brand:
-    "bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:outline-primary",
+    "bg-primary text-primary-foreground focus-visible:outline-primary",
   // Quiet, bordered
   ghost:
     "bg-transparent text-foreground ring-1 ring-border hover:ring-muted-foreground/40 hover:bg-card focus-visible:outline-accent",
@@ -123,7 +123,7 @@ export const sectionTones = {
   light: "bg-background text-foreground",
   white: "bg-card text-foreground",
   muted: "bg-muted/50 text-foreground",
-  dark: "bg-navy-900 text-white",
+  dark: "bg-primary text-white",
 } as const;
 
 export type SectionTone = keyof typeof sectionTones;

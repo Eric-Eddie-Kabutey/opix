@@ -94,7 +94,7 @@ export default function SupportPage() {
               href={s.href}
               className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 transition-colors hover:border-teal-500/40"
             >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-navy-900/5 text-navy-900">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary/5 text-navy-900">
                 <Icon name={s.icon} className="h-4.5 w-4.5" width={18} height={18} />
               </span>
               <p className="mt-4 text-sm font-semibold text-navy-900">{s.title}</p>

@@ -57,7 +57,7 @@ export default function DocsPage() {
             "Explore endpoints: KYC, verification, escrow, and more",
           ].map((step, i) => (
             <li key={step} className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4">
-              <span className="inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-navy-900 text-xs font-semibold text-white">{i + 1}</span>
+              <span className="inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">{i + 1}</span>
               <span className="text-sm text-navy-900">{step}</span>
             </li>
           ))}

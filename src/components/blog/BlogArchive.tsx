@@ -65,7 +65,7 @@ export function BlogArchive({ articles }: { articles: Article[] }) {
               aria-pressed={category === c}
               className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                 category === c
-                  ? "bg-navy-900 text-white"
+                  ? "bg-primary text-white"
                   : "text-slate-500 hover:bg-slate-100 hover:text-navy-900"
               }`}
             >
@@ -130,7 +130,7 @@ export function BlogArchive({ articles }: { articles: Article[] }) {
               aria-label={`Page ${p}`}
               aria-current={p === current}
               className={`h-9 min-w-9 rounded-full px-3 text-sm font-medium transition ${
-                p === current ? "bg-navy-900 text-white" : "text-slate-500 hover:bg-slate-100 hover:text-navy-900"
+                p === current ? "bg-primary text-white" : "text-slate-500 hover:bg-slate-100 hover:text-navy-900"
               }`}
             >
               {p}

@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import type { Product } from "@/content/products";
 import { CheckList } from "@/components/ui/CheckList";
 import { Icon } from "@/components/ui/Icon";
-import { ProductVisual } from "./Cards";
+import { ProductIllustration } from "./ProductIllustration";
 
 // Scroll-stacking product showcase — same effect on mobile, tablet, and desktop.
 // • Stacking: each card sits in a viewport-tall `sticky` track, so later cards
@@ -65,10 +65,10 @@ function StackedProductCard({
       style={{ zIndex: index + 1 }}
     >
       <motion.article
-        // style={{ scale: reduceMotion ? 1 : scaleMv }}
-        className="w-full origin-top overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-card to-slate-50 "
+        // style={{ scale: reduceMotion ? 1 : scaleMv }} 
+        className="w-full origin-top overflow-hidden bg-gradient-to-br from-card to-slate-50 rounded-3xl border border-border"
       >
-        <div className="grid w-full items-center gap-8 p-6 sm:gap-10 sm:p-10 lg:grid-cols-2 lg:gap-16 lg:p-16">
+        <div className="grid w-full items-center p-6 sm:p-10 lg:grid-cols-2 lg:p-16">
           {/* Text */}
           <div className={flip ? "lg:order-2" : ""}>
             <span className="eyebrow text-accent-hover">{product.category}</span>
@@ -86,7 +86,7 @@ function StackedProductCard({
 
           {/* Visual */}
           <div className={flip ? "lg:order-1" : ""}>
-            <ProductVisual name={product.name} />
+            <ProductIllustration slug={product.slug} name={product.name} />
           </div>
         </div>
       </motion.article>
